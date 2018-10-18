@@ -1,4 +1,5 @@
 import React from 'react';
+import { db } from '../config/db';
 import {
   Image,
   Platform,
@@ -13,9 +14,24 @@ import { WebBrowser } from 'expo';
 import { MonoText } from '../components/StyledText';
 
 export default class HomeScreen extends React.Component {
+  
+  state = {
+  }
+  
   static navigationOptions = {
     header: null,
   };
+ 
+
+  componentDidMount() {
+    db.ref('persons').on('value', (snapshot) => {
+      var persons = [];
+      snapshot.forEach(data => {
+        persons.push(data.val());
+      })
+      this.setState({persons: persons});
+  });
+  }
 
   render() {
     return (
@@ -46,9 +62,13 @@ export default class HomeScreen extends React.Component {
                 screens / HomeScreen.js{' '}
               </MonoText>{' '}
             </View>
-            <Text style={styles.getStartedText}>
-              Change this text and your app will automatically reload.{' '}
-            </Text>{' '}
+              {this.state.persons ? this.state.persons.map(function(data, key) {
+                return <Text key={key}>{data.name}</Text>
+              }) : <Text> Hello that</Text>}
+              {console.log("state: " + JSON.stringify(this.state))}
+              
+              
+            
           </View>
           <View style={styles.helpContainer}>
             <TouchableOpacity
