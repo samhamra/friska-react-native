@@ -4,11 +4,8 @@ import {
   createStackNavigator,
   createBottomTabNavigator,
 } from 'react-navigation';
-
-import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import { HomeScreen, LinksScreen, SettingsScreen } from '../screens';
+import { TabBarIcon } from '../components';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -64,8 +61,9 @@ SettingsStack.navigationOptions = {
   ),
 };
 
-export default createBottomTabNavigator({
+const MainTabNavigator = createBottomTabNavigator({
   HomeStack,
   LinksStack,
   SettingsStack,
 });
+export default MainTabNavigator;

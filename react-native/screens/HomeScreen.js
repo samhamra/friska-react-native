@@ -1,5 +1,5 @@
 import React from 'react';
-import { db } from '../config/db';
+import { db } from '../config';
 import {
   Image,
   Platform,
@@ -11,26 +11,23 @@ import {
 } from 'react-native';
 import { WebBrowser } from 'expo';
 
-import { MonoText } from '../components/StyledText';
+import { MonoText } from '../components';
 
 export default class HomeScreen extends React.Component {
-  
-  state = {
-  }
-  
+  state = {};
+
   static navigationOptions = {
     header: null,
   };
- 
 
   componentDidMount() {
-    db.ref('persons').on('value', (snapshot) => {
+    db.ref('persons').on('value', snapshot => {
       var persons = [];
       snapshot.forEach(data => {
         persons.push(data.val());
-      })
-      this.setState({persons: persons});
-  });
+      });
+      this.setState({ persons: persons });
+    });
   }
 
   render() {
@@ -62,13 +59,14 @@ export default class HomeScreen extends React.Component {
                 screens / HomeScreen.js{' '}
               </MonoText>{' '}
             </View>
-              {this.state.persons ? this.state.persons.map(function(data, key) {
-                return <Text key={key}>{data.name}</Text>
-              }) : <Text> Hello that</Text>}
-              {console.log("state: " + JSON.stringify(this.state))}
-              
-              
-            
+            {this.state.persons ? (
+              this.state.persons.map(function(data, key) {
+                return <Text key={key}>{data.name}</Text>;
+              })
+            ) : (
+              <Text> Hello that</Text>
+            )}
+            {console.log('state: ' + JSON.stringify(this.state))}
           </View>
           <View style={styles.helpContainer}>
             <TouchableOpacity
