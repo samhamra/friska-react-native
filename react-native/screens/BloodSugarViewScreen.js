@@ -1,24 +1,16 @@
 import React from 'react';
 import { View, StyleSheet, Text, Button } from 'react-native';
 
-export default class OverviewScreen extends React.Component {
+export default class BloodSugarViewScreen extends React.Component {
   static navigationOptions = {
-    title: 'Overview',
+    title: 'Blood sugar',
   };
 
   render() {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <Button onPress={() => navigate('WeightView')} title="Weight" />
-        <Button
-          onPress={() => navigate('BloodPressureView')}
-          title="Blood Pressure"
-        />
-        <Button
-          onPress={() => navigate('BloodSugarView')}
-          title="Blood Sugar"
-        />
+        <Text>Blood sugar view</Text>
       </View>
     );
   }

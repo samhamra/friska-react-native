@@ -9,6 +9,7 @@ import WeightViewScreen from './WeightViewScreen';
 import WeightEnterScreen from './WeightEnterScreen';
 import BloodPressureViewScreen from './BloodPressureViewScreen';
 import BloodPressureEnterScreen from './BloodPressureEnterScreen';
+import BloodSugarViewScreen from './BloodSugarViewScreen';
 
 export {
   HomeScreen,
@@ -22,4 +23,5 @@ export {
   WeightEnterScreen,
   BloodPressureViewScreen,
   BloodPressureEnterScreen,
+  BloodSugarViewScreen,
 };

@@ -16,6 +16,7 @@ import {
   WeightEnterScreen,
   BloodPressureViewScreen,
   BloodPressureEnterScreen,
+  BloodSugarViewScreen,
 } from '../screens';
 import { TabBarIcon } from '../components';
 
@@ -25,6 +26,7 @@ const MeasurementsStack = createStackNavigator({
   WeightEnter: WeightEnterScreen,
   BloodPressureView: BloodPressureViewScreen,
   BloodPressureEnter: BloodPressureEnterScreen,
+  BloodSugarView: BloodSugarViewScreen,
 });
 
 MeasurementsStack.navigationOptions = {
