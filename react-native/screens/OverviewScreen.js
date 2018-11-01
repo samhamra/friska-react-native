@@ -19,6 +19,7 @@ export default class OverviewScreen extends React.Component {
           onPress={() => navigate('BloodSugarView')}
           title="Blood Sugar"
         />
+        <Button onPress={() => navigate('KetonesView')} title="Ketones" />
       </View>
     );
   }
