@@ -11,15 +11,24 @@ import {
   ChatScreen,
   AddScreen,
   ChatSelectScreen,
+  OverviewScreen,
+  WeightViewScreen,
+  WeightEnterScreen,
+  BloodPressureViewScreen,
+  BloodPressureEnterScreen,
 } from '../screens';
 import { TabBarIcon } from '../components';
 
-const HomeStack = createStackNavigator({
-  Home: HomeScreen,
+const MeasurementsStack = createStackNavigator({
+  Overview: OverviewScreen,
+  WeightView: WeightViewScreen,
+  WeightEnter: WeightEnterScreen,
+  BloodPressureView: BloodPressureViewScreen,
+  BloodPressureEnter: BloodPressureEnterScreen,
 });
 
-HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+MeasurementsStack.navigationOptions = {
+  tabBarLabel: 'Overview',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -106,7 +115,7 @@ SettingsStack.navigationOptions = {
 };
 
 const MainTabNavigator = createBottomTabNavigator({
-  HomeStack,
+  MeasurementsStack,
   LinksStack,
   AddStack,
   ChatStack,
