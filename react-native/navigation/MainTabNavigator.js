@@ -4,7 +4,14 @@ import {
   createStackNavigator,
   createBottomTabNavigator,
 } from 'react-navigation';
-import { HomeScreen, LinksScreen, SettingsScreen } from '../screens';
+import {
+  HomeScreen,
+  LinksScreen,
+  SettingsScreen,
+  ChatScreen,
+  AddScreen,
+  ChatSelectScreen,
+} from '../screens';
 import { TabBarIcon } from '../components';
 
 const HomeStack = createStackNavigator({
@@ -18,8 +25,8 @@ HomeStack.navigationOptions = {
       focused={focused}
       name={
         Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
+          ? `ios-home${focused ? '' : '-outline'}`
+          : 'md-home'
       }
     />
   ),
@@ -38,6 +45,43 @@ LinksStack.navigationOptions = {
         Platform.OS === 'ios'
           ? `ios-link${focused ? '' : '-outline'}`
           : 'md-link'
+      }
+    />
+  ),
+};
+
+const ChatStack = createStackNavigator({
+  Select: ChatSelectScreen,
+  Chat: ChatScreen,
+});
+
+ChatStack.navigationOptions = {
+  tabBarLabel: 'Chat',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-chatbubbles${focused ? '' : '-outline'}`
+          : 'md-chatbubbles'
+      }
+    />
+  ),
+};
+
+const AddStack = createStackNavigator({
+  Add: AddScreen,
+});
+
+AddStack.navigationOptions = {
+  tabBarLabel: 'Add',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-add-circle${focused ? '' : '-outline'}`
+          : 'md-add-circle'
       }
     />
   ),
@@ -64,6 +108,8 @@ SettingsStack.navigationOptions = {
 const MainTabNavigator = createBottomTabNavigator({
   HomeStack,
   LinksStack,
+  AddStack,
+  ChatStack,
   SettingsStack,
 });
 export default MainTabNavigator;
