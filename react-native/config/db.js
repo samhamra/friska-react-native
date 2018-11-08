@@ -20,23 +20,19 @@ db.setHealthData(1, 'bloodsugar', 1.37)
 
 */
 
-var db = {
+const db = {
   db: app.database(),
-  getHealthData: function(patientId, valueType) {
-    this.db.ref('idpatient' + patientId + '/healthdata/' + valueType).once('value', snapshot => {
-      console.log(valueType, snapshot);
-    });
-    this.db.ref('idpatient' + patientId + '/healthdata/' + valueType).orderByChild('timestamp').startAt(Date.now()).on('child_added', function(snapshot) {
-      console.log('new record', snapshot);
-    });
+  getHealthData: function(patientId, valueType, onceHandler, updateHandler) {
+    this.db.ref('patient' + patientId + '/healthdata/' + valueType).once('value', onceHandler);
+    
+    this.db.ref('patient' + patientId + '/healthdata/' + valueType).orderByChild('timestamp').startAt(Date.now()).on('child_added', updateHandler);
   },
   setHealthData: function(patientId, valueType, value) {
-    var newDataRef = this.db.ref('idpatient' + patientId + '/healthdata/' + valueType).push();
+    var newDataRef = this.db.ref('patient' + patientId + '/healthdata/' + valueType).push();
     newDataRef.set({
       data: value,
       timestamp: firebase.database.ServerValue.TIMESTAMP
     });
   }
 }
-
 export default db;

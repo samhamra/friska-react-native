@@ -1,6 +1,7 @@
 import React from 'react';
-import { db } from '../config';
+import { db } from '../config/index.js';
 import {
+  Button,
   Image,
   Platform,
   ScrollView,
@@ -14,13 +15,49 @@ import { WebBrowser } from 'expo';
 import { MonoText } from '../components';
 
 export default class HomeScreen extends React.Component {
-  state = {};
+  constructor(props) {
+    super(props);
+    this.state = {
+      weight: {}
+    }
+  }
+
 
   static navigationOptions = {
     header: null,
   };
 
   componentDidMount() {
+    db.getHealthData(1, 'weight', this.onceHandler, this.updateHandler);
+
+  }
+  onceHandler = (data) => {
+   this.setState({weight: data.val()})
+ }
+ renderWeight = () => {
+   
+     return Object.keys(this.state.weight).map((key) => {
+       return (
+          <Text>Weight: {this.state.weight[key].data} Timestamp: {this.state.weight[key].data}</Text>
+       )
+     })
+}
+  
+  
+  updateHandler = (data) => {
+    console.log("this is the updateHandler")
+    console.log(data.val())
+    console.log(data.val().timestamp)
+    console.log(data.val().data)
+    var result = this.state.weight;
+    result[data.val().timestamp] = data.val();
+    
+    this.setState((state) => {
+    // Important: read `state` instead of `this.state` when updating.
+    return {weight: result}
+    });
+    
+
   }
 
   render() {
@@ -52,14 +89,18 @@ export default class HomeScreen extends React.Component {
                 screens / HomeScreen.js{' '}
               </MonoText>{' '}
             </View>
-            {this.state.persons ? (
-              this.state.persons.map(function(data, key) {
-                return <Text key={key}>{data.name}</Text>;
-              })
-            ) : (
-              <Text> Hello that</Text>
-            )}
-            {console.log('state: ' + JSON.stringify(this.state))}
+          </View>
+          <View>
+            
+            <Button
+              onPress={() => db.setHealthData(1, 'weight', '70')}
+              title="Try inserting some weight data"
+              color="#841584"
+            />
+            
+          {this.renderWeight()}
+          
+          
           </View>
           <View style={styles.helpContainer}>
             <TouchableOpacity
