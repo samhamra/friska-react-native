@@ -31,33 +31,27 @@ export default class HomeScreen extends React.Component {
     db.getHealthData(1, 'weight', this.onceHandler, this.updateHandler);
 
   }
+  
   onceHandler = (data) => {
    this.setState({weight: data.val()})
- }
- renderWeight = () => {
-   
+  }
+  
+  renderWeight = () => {
      return Object.keys(this.state.weight).map((key) => {
        return (
           <Text>Weight: {this.state.weight[key].data} Timestamp: {this.state.weight[key].timestamp}</Text>
        )
      })
-}
+  }
   
   
   updateHandler = (data) => {
-    console.log("this is the updateHandler")
-    console.log(data.val())
-    console.log(data.val().timestamp)
-    console.log(data.val().data)
     var result = this.state.weight;
     result[data.val().timestamp] = data.val();
-    
     this.setState((state) => {
     // Important: read `state` instead of `this.state` when updating.
     return {weight: result}
     });
-    
-
   }
 
   render() {
