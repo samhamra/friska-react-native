@@ -11,5 +11,32 @@ const firebaseConfig = {
 };
 
 var app = firebase.initializeApp(firebaseConfig);
-const db = app.database();
+
+/*
+valueTypes: keton, weight, bloodsugar, bloodpressure, diary
+examples:
+db.getHealthData(1, 'bloodsugar')
+db.setHealthData(1, 'bloodsugar', 1.37)
+
+*/
+
+var db = {
+  db: app.database(),
+  getHealthData: function(patientId, valueType) {
+    this.db.ref('idpatient' + patientId + '/healthdata/' + valueType).once('value', snapshot => {
+      console.log(valueType, snapshot);
+    });
+    this.db.ref('idpatient' + patientId + '/healthdata/' + valueType).orderByChild('timestamp').startAt(Date.now()).on('child_added', function(snapshot) {
+      console.log('new record', snapshot);
+    });
+  },
+  setHealthData: function(patientId, valueType, value) {
+    var newDataRef = this.db.ref('idpatient' + patientId + '/healthdata/' + valueType).push();
+    newDataRef.set({
+      data: value,
+      timestamp: firebase.database.ServerValue.TIMESTAMP
+    });
+  }
+}
+
 export default db;
