@@ -38,7 +38,7 @@ export default class HomeScreen extends React.Component {
    
      return Object.keys(this.state.weight).map((key) => {
        return (
-          <Text>Weight: {this.state.weight[key].data} Timestamp: {this.state.weight[key].data}</Text>
+          <Text>Weight: {this.state.weight[key].data} Timestamp: {this.state.weight[key].timestamp}</Text>
        )
      })
 }
