@@ -21,13 +21,6 @@ export default class HomeScreen extends React.Component {
   };
 
   componentDidMount() {
-    db.ref('persons').on('value', snapshot => {
-      var persons = [];
-      snapshot.forEach(data => {
-        persons.push(data.val());
-      });
-      this.setState({ persons: persons });
-    });
   }
 
   render() {
