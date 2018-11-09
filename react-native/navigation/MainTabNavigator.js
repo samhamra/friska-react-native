@@ -20,6 +20,7 @@ import {
   KetonesViewScreen,
   KetonesEnterScreen,
   FeedScreen,
+  AddSelectScreen,
 } from '../screens';
 import { TabBarIcon } from '../components';
 
@@ -87,6 +88,10 @@ ChatStack.navigationOptions = {
 
 const FeedStack = createStackNavigator({
   Feed: FeedScreen,
+  Select: AddSelectScreen,
+  // Diary: null,
+  Chat: ChatScreen,
+  // EnterMeasurements: null,
 });
 
 FeedStack.navigationOptions = {

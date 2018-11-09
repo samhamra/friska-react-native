@@ -41,18 +41,18 @@ export default class FeedScreen extends React.Component {
   };
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
         <Timeline data={dummyData} onEventPress={e => console.log(e)} />
         <TouchableOpacity
           style={styles.addButton}
-          onPress={() => console.log('hej')}
+          onPress={() => navigate('Select')}
         >
           <Icon.Ionicons
             name={Platform.OS === 'ios' ? `ios-add-circle` : 'md-add-circle'}
             size={50}
             color={Colors.tabIconDefault}
-            onEventPress={e => console.log(e)}
           />
         </TouchableOpacity>
       </View>

@@ -13,6 +13,7 @@ import BloodSugarViewScreen from './BloodSugarViewScreen';
 import KetonesViewScreen from './KetonesViewScreen';
 import KetonesEnterScreen from './KetonesEnterScreen';
 import FeedScreen from './FeedScreen';
+import AddSelectScreen from './AddSelectScreen';
 
 export {
   HomeScreen,
@@ -30,4 +31,5 @@ export {
   KetonesViewScreen,
   KetonesEnterScreen,
   FeedScreen,
+  AddSelectScreen,
 };
