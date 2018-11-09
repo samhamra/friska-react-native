@@ -12,6 +12,7 @@ import BloodPressureEnterScreen from './BloodPressureEnterScreen';
 import BloodSugarViewScreen from './BloodSugarViewScreen';
 import KetonesViewScreen from './KetonesViewScreen';
 import KetonesEnterScreen from './KetonesEnterScreen';
+import FeedScreen from './FeedScreen';
 
 export {
   HomeScreen,
@@ -28,4 +29,5 @@ export {
   BloodSugarViewScreen,
   KetonesViewScreen,
   KetonesEnterScreen,
+  FeedScreen,
 };

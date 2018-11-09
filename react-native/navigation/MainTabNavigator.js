@@ -19,6 +19,7 @@ import {
   BloodSugarViewScreen,
   KetonesViewScreen,
   KetonesEnterScreen,
+  FeedScreen,
 } from '../screens';
 import { TabBarIcon } from '../components';
 
@@ -84,6 +85,24 @@ ChatStack.navigationOptions = {
   ),
 };
 
+const FeedStack = createStackNavigator({
+  Feed: FeedScreen,
+});
+
+FeedStack.navigationOptions = {
+  tabBarLabel: 'Feed',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-paper${focused ? '' : '-outline'}`
+          : 'md-paper'
+      }
+    />
+  ),
+};
+
 const AddStack = createStackNavigator({
   Add: AddScreen,
 });
@@ -124,6 +143,7 @@ const MainTabNavigator = createBottomTabNavigator({
   MeasurementsStack,
   LinksStack,
   AddStack,
+  FeedStack,
   ChatStack,
   SettingsStack,
 });
