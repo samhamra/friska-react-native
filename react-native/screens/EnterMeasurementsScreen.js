@@ -6,6 +6,7 @@ import {
   TextInput,
   Button,
   KeyboardAvoidingView,
+  View,
 } from 'react-native';
 export default class EnterMeasurementsScreen extends React.Component {
   constructor() {
@@ -17,7 +18,7 @@ export default class EnterMeasurementsScreen extends React.Component {
   };
   render() {
     return (
-      <View style={styles.container} enabled>
+      <View style={styles.container}>
         <ScrollView>
           <Text style={styles.fieldName}>Blodtryck</Text>
           <Text>Övertryck</Text>

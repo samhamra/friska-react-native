@@ -23,6 +23,7 @@ import {
   AddSelectScreen,
   DiaryEntryScreen,
   EnterMeasurementsScreen,
+  CalendarScreen,
 } from '../screens';
 import { TabBarIcon } from '../components';
 
@@ -64,6 +65,24 @@ LinksStack.navigationOptions = {
         Platform.OS === 'ios'
           ? `ios-link${focused ? '' : '-outline'}`
           : 'md-link'
+      }
+    />
+  ),
+};
+
+const CalendarStack = createStackNavigator({
+  Calendar: CalendarScreen,
+});
+
+CalendarStack.navigationOptions = {
+  tabBarLabel: 'Calendar',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-chatbubbles${focused ? '' : '-outline'}`
+          : 'md-chatbubbles'
       }
     />
   ),
@@ -148,7 +167,7 @@ SettingsStack.navigationOptions = {
 
 const MainTabNavigator = createBottomTabNavigator({
   MeasurementsStack,
-  LinksStack,
+  CalendarStack,
   AddStack,
   FeedStack,
   ChatStack,
