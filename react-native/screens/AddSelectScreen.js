@@ -19,7 +19,7 @@ export default class AddSelectScreen extends React.Component {
           title="Skriv ett dagboksinlägg"
         />
         <Button
-          onPress={() => navigate('EnterMeasurement')}
+          onPress={() => navigate('EnterMeasurements')}
           title="Skriv in mätvärde"
         />
       </View>

@@ -22,6 +22,7 @@ import {
   FeedScreen,
   AddSelectScreen,
   DiaryEntryScreen,
+  EnterMeasurementsScreen,
 } from '../screens';
 import { TabBarIcon } from '../components';
 
@@ -92,7 +93,7 @@ const FeedStack = createStackNavigator({
   Select: AddSelectScreen,
   Diary: DiaryEntryScreen,
   Chat: ChatScreen,
-  // EnterMeasurements: null,
+  EnterMeasurements: EnterMeasurementsScreen,
 });
 
 FeedStack.navigationOptions = {

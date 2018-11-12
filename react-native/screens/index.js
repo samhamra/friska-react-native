@@ -15,6 +15,7 @@ import KetonesEnterScreen from './KetonesEnterScreen';
 import FeedScreen from './FeedScreen';
 import AddSelectScreen from './AddSelectScreen';
 import DiaryEntryScreen from './DiaryEntryScreen';
+import EnterMeasurementsScreen from './EnterMeasurementsScreen';
 
 export {
   HomeScreen,
@@ -34,4 +35,5 @@ export {
   FeedScreen,
   AddSelectScreen,
   DiaryEntryScreen,
+  EnterMeasurementsScreen,
 };
