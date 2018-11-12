@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     paddingTop: Constants.statusBarHeight,
   },
   title: {
-    textAlign: 'center',
+    textAlign: 'left',
     fontSize: 22,
     fontWeight: '300',
     marginBottom: 20,
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: '#F5FCFF',
     paddingLeft: 10,
-    paddingRight: 10,
+    paddingRight: 40,
     flexDirection: 'row',
     position: 'relative',
   },

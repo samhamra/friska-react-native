@@ -57,7 +57,14 @@ export default class EnterMeasurementsScreen extends React.Component {
             onChangeText={t => this.setState({ comment: t })}
             style={styles.input}
           />
-          <Button title="Spara" onPress={() => console.log(this.state)} />
+          <Button
+            title="Spara"
+            onPress={() => {
+              {
+                /* console.log(this.state) */
+              }
+            }}
+          />
         </ScrollView>
       </View>
     );
