@@ -13,12 +13,9 @@ import {
   ChatSelectScreen,
   OverviewScreen,
   WeightViewScreen,
-  WeightEnterScreen,
   BloodPressureViewScreen,
-  BloodPressureEnterScreen,
   BloodSugarViewScreen,
   KetonesViewScreen,
-  KetonesEnterScreen,
   FeedScreen,
   AddSelectScreen,
   DiaryEntryScreen,
@@ -47,24 +44,6 @@ MeasurementsStack.navigationOptions = {
         Platform.OS === 'ios'
           ? `ios-home${focused ? '' : '-outline'}`
           : 'md-home'
-      }
-    />
-  ),
-};
-
-const LinksStack = createStackNavigator({
-  Links: LinksScreen,
-});
-
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-link${focused ? '' : '-outline'}`
-          : 'md-link'
       }
     />
   ),
@@ -129,48 +108,11 @@ FeedStack.navigationOptions = {
   ),
 };
 
-const AddStack = createStackNavigator({
-  Add: AddScreen,
-});
-
-AddStack.navigationOptions = {
-  tabBarLabel: 'Add',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-add-circle${focused ? '' : '-outline'}`
-          : 'md-add-circle'
-      }
-    />
-  ),
-};
-
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
-});
-
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-options${focused ? '' : '-outline'}`
-          : 'md-options'
-      }
-    />
-  ),
-};
-
 const MainTabNavigator = createBottomTabNavigator({
   MeasurementsStack,
   CalendarStack,
   AddStack,
   FeedStack,
   ChatStack,
-  SettingsStack,
 });
 export default MainTabNavigator;

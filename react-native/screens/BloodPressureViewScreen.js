@@ -10,10 +10,7 @@ export default class BloodPressureViewScreen extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <Button
-          onPress={() => navigate('BloodPressureEnter')}
-          title="Enter measurement"
-        />
+        <Text>Blood pressure view</Text>
       </View>
     );
   }

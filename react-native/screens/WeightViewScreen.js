@@ -10,10 +10,7 @@ export default class WeightViewScreen extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <Button
-          onPress={() => navigate('WeightEnter')}
-          title="Enter measurement"
-        />
+        <Text>Weight</Text>
       </View>
     );
   }
