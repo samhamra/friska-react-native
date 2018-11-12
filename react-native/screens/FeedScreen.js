@@ -6,8 +6,10 @@ import {
   Text,
   View,
   TouchableOpacity,
+  Platform,
 } from 'react-native';
-import { Constants } from 'expo';
+import { Constants, Icon } from 'expo';
+import Colors from '../constants/Colors';
 import Collapsible from 'react-native-collapsible';
 import Accordion from 'react-native-collapsible/Accordion';
 
@@ -91,7 +93,7 @@ export default class FeedScreen extends Component {
 
   render() {
     const { multipleSelect, activeSections } = this.state;
-
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
         <ScrollView contentContainerStyle={{ paddingTop: 30 }}>
@@ -106,6 +108,16 @@ export default class FeedScreen extends Component {
             onChange={this.setSections}
           />
         </ScrollView>
+        <TouchableOpacity
+          style={styles.addButton}
+          onPress={() => navigate('Select')}
+        >
+          <Icon.Ionicons
+            name={Platform.OS === 'ios' ? `ios-add-circle` : 'md-add-circle'}
+            size={50}
+            color={Colors.tabIconDefault}
+          />
+        </TouchableOpacity>
       </View>
     );
   }
@@ -192,5 +204,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#bbb',
     position: 'absolute',
     left: 9 + 25 / 2,
+  },
+  addButton: {
+    position: 'absolute',
+    bottom: 10,
+    right: 10,
   },
 });

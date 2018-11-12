@@ -27,16 +27,13 @@ import { TabBarIcon } from '../components';
 const MeasurementsStack = createStackNavigator({
   Overview: OverviewScreen,
   WeightView: WeightViewScreen,
-  WeightEnter: WeightEnterScreen,
   BloodPressureView: BloodPressureViewScreen,
-  BloodPressureEnter: BloodPressureEnterScreen,
   BloodSugarView: BloodSugarViewScreen,
   KetonesView: KetonesViewScreen,
-  KetonesEnter: KetonesEnterScreen,
 });
 
 MeasurementsStack.navigationOptions = {
-  tabBarLabel: 'Overview',
+  tabBarLabel: 'Measurements',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -60,8 +57,8 @@ CalendarStack.navigationOptions = {
       focused={focused}
       name={
         Platform.OS === 'ios'
-          ? `ios-chatbubbles${focused ? '' : '-outline'}`
-          : 'md-chatbubbles'
+          ? `ios-calendar${focused ? '' : '-outline'}`
+          : 'md-calendar'
       }
     />
   ),
@@ -109,9 +106,8 @@ FeedStack.navigationOptions = {
 };
 
 const MainTabNavigator = createBottomTabNavigator({
-  MeasurementsStack,
   CalendarStack,
-  AddStack,
+  MeasurementsStack,
   FeedStack,
   ChatStack,
 });
