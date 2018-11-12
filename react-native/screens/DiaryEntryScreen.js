@@ -22,7 +22,7 @@ export default class DiaryEntryScreen extends React.Component {
           placeholder="Skriv ditt inlägg här"
         />
         <View style={styles.save}>
-          <Button title="Spara" onPress={() => console.log('Sparat')} />
+          <Button title="Spara" onPress={() => {}} />
         </View>
       </KeyboardAvoidingView>
     );
