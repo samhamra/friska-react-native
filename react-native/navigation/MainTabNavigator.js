@@ -3,6 +3,7 @@ import { Platform } from 'react-native';
 import {
   createStackNavigator,
   createBottomTabNavigator,
+  createDrawerNavigator,
 } from 'react-navigation';
 import {
   HomeScreen,
@@ -105,10 +106,42 @@ FeedStack.navigationOptions = {
   ),
 };
 
+export const DrawerNavigator = createDrawerNavigator({
+  Chat: ChatScreen,
+  Diary: DiaryEntryScreen,
+});
+DrawerNavigator.navigationOptions = {};
+
+class More extends React.Component {
+  render() {
+    return null;
+  }
+}
+
 const MainTabNavigator = createBottomTabNavigator({
   CalendarStack,
   MeasurementsStack,
   FeedStack,
-  ChatStack,
+  More: {
+    screen: More,
+    navigationOptions: {
+      tabBarOnPress: ({ previousScene, scene, jumpToIndex, navigation }) => {
+        console.log(navigation);
+        console.log('hej');
+        navigation.navigate('drawerOpen');
+      },
+      tabBarLabel: 'Mer',
+      tabBarIcon: ({ focused }) => (
+        <TabBarIcon
+          focused={focused}
+          name={
+            Platform.OS === 'ios'
+              ? `ios-more${focused ? '' : '-outline'}`
+              : 'md-more'
+          }
+        />
+      ),
+    },
+  },
 });
 export default MainTabNavigator;
