@@ -21,7 +21,7 @@ export default class SelectModal extends React.Component {
   render() {
     return (
       <Modal
-        animationType="slide"
+        animationType="fade"
         transparent={false}
         visible={this.props.isOpen}
       >
@@ -80,8 +80,10 @@ const styles = StyleSheet.create({
   },
   closeButton: {
     position: 'absolute',
-    top: 15,
-    right: 15,
+    top: 0,
+    right: 0,
+    paddingTop: 15,
+    paddingRight: 15,
   },
   button: {
     padding: 10,
