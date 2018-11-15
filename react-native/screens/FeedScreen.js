@@ -12,29 +12,40 @@ import { Constants, Icon } from 'expo';
 import Colors from '../constants/Colors';
 import Collapsible from 'react-native-collapsible';
 import Accordion from 'react-native-collapsible/Accordion';
+import { LIGHT_GREY, DARK_GREY } from '../styles/colors';
 
 const BACON_IPSUM =
   'Bacon ipsum dolor amet chuck turducken landjaeger tongue spare ribs. Picanha beef prosciutto meatball turkey shoulder shank salami cupim doner jowl pork belly cow. Chicken shankle rump swine tail frankfurter meatloaf ground round flank ham hock tongue shank andouille boudin brisket. ';
 
 const CONTENT = [
   {
-    title: BACON_IPSUM,
+    title: 'Chattmeddelande',
+    date: '2012-10-05',
+    text: 'Tack! Då vet jag vad jag ska tänka på',
     content: BACON_IPSUM,
   },
   {
-    title: 'Second',
+    title: 'Dagboksinlägg',
+    text: 'Tack! Då vet jag vad jag ska tänka på',
+    date: '2012-10-05',
     content: BACON_IPSUM,
   },
   {
-    title: 'Third',
+    title: 'Chattmeddelande',
+    text: 'Tack! Då vet jag vad jag ska tänka på',
+    date: '2012-10-05',
     content: BACON_IPSUM,
   },
   {
-    title: 'Fourth',
+    title: 'Chattmeddelande',
+    text: 'Tack! Då vet jag vad jag ska tänka på',
+    date: '2012-10-05',
     content: BACON_IPSUM,
   },
   {
-    title: 'Fifth',
+    title: 'Dagboksinlägg',
+    text: 'Tack! Då vet jag vad jag ska tänka på',
+    date: '2012-10-05',
     content: BACON_IPSUM,
   },
 ];
@@ -73,20 +84,42 @@ export default class FeedScreen extends Component {
   renderHeader = (section, _, isActive) => {
     return (
       <View style={[styles.header, isActive ? styles.active : styles.inactive]}>
-        <View style={styles.dot} />
-        <View style={styles.headerLine} />
-        <Text style={styles.headerText}>{section.title}</Text>
+        <View
+          style={{
+            backgroundColor: LIGHT_GREY,
+            position: 'relative',
+            paddingRight: 8,
+          }}
+        >
+          <View style={styles.dot} />
+          <View style={styles.headerLine} />
+        </View>
+        <View style={{ padding: 15 }}>
+          <Text style={styles.headerText}>{section.title}</Text>
+          <Text>{section.text}</Text>
+          <Text style={styles.dateText}>{section.date}</Text>
+        </View>
       </View>
     );
   };
 
   renderContent(section, _, isActive) {
     return (
-      <View
-        style={[styles.content, isActive ? styles.active : styles.inactive]}
-      >
-        <View style={styles.line} />
-        <Text>{section.content}</Text>
+      <View style={styles.content}>
+        <View
+          style={{
+            backgroundColor: LIGHT_GREY,
+            position: 'relative',
+            marginBottom: -21.5,
+            marginTop: -21.5,
+            paddingLeft: 11.5,
+          }}
+        >
+          <View style={styles.line} />
+        </View>
+        <View>
+          <Text>{section.content}</Text>
+        </View>
       </View>
     );
   }
@@ -96,7 +129,7 @@ export default class FeedScreen extends Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <ScrollView contentContainerStyle={{ paddingTop: 30 }}>
+        <ScrollView style={styles.scrollContainer}>
           <Accordion
             activeSections={activeSections}
             sections={CONTENT}
@@ -126,64 +159,38 @@ export default class FeedScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5FCFF',
-    paddingTop: Constants.statusBarHeight,
+    backgroundColor: LIGHT_GREY,
   },
-  title: {
-    textAlign: 'left',
-    fontSize: 22,
-    fontWeight: '300',
-    marginBottom: 20,
+  scrollContainer: {
+    padding: 15,
+  },
+  dateText: {
+    fontSize: 8,
+    color: DARK_GREY,
   },
   header: {
     backgroundColor: '#F5FCFF',
-    paddingLeft: 10,
     paddingRight: 40,
     flexDirection: 'row',
     position: 'relative',
+    borderRadius: 10,
   },
   headerText: {
-    textAlign: 'center',
+    textAlign: 'left',
     fontSize: 16,
     fontWeight: '500',
   },
   content: {
-    padding: 21.5,
+    paddingTop: 21.5,
+    paddingBottom: 21.5,
+    paddingRight: 21.5,
     backgroundColor: '#fff',
     flexDirection: 'row',
-  },
-  active: {
-    backgroundColor: 'rgba(255,255,255,1)',
-  },
-  inactive: {
-    backgroundColor: 'rgba(245,252,255,1)',
-  },
-  selectors: {
-    marginBottom: 10,
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  selector: {
-    backgroundColor: '#F5FCFF',
-    padding: 10,
-  },
-  activeSelector: {
-    fontWeight: 'bold',
   },
   selectTitle: {
     fontSize: 14,
     fontWeight: '500',
     padding: 10,
-  },
-  multipleToggle: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginVertical: 30,
-    alignItems: 'center',
-  },
-  multipleToggle__title: {
-    fontSize: 16,
-    marginRight: 8,
   },
   dot: {
     height: 25,
@@ -193,17 +200,18 @@ const styles = StyleSheet.create({
   },
   line: {
     width: 2,
+    flex: 1,
     backgroundColor: '#bbb',
     marginTop: -100,
     marginBottom: -100,
-    marginRight: 10,
+    marginRight: 19.5,
   },
   headerLine: {
     width: 2,
     height: '100%',
     backgroundColor: '#bbb',
     position: 'absolute',
-    left: 9 + 25 / 2,
+    left: 11.5,
   },
   addButton: {
     position: 'absolute',
