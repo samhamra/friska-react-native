@@ -1,6 +1,6 @@
 import React from 'react';
+import { LIGHT_GREY } from '../styles/colors';
 import { View, StyleSheet, Text, Button, TouchableOpacity } from 'react-native';
-import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import { FriskaCalendar } from '../components';
 import { Icon } from 'expo';
 
@@ -22,7 +22,7 @@ export default class CalendarScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 15,
-    backgroundColor: '#fff',
+    padding: 15,
+    backgroundColor: LIGHT_GREY,
   },
 });
