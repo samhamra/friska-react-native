@@ -13,26 +13,42 @@ const firebaseConfig = {
 var app = firebase.initializeApp(firebaseConfig);
 
 /*
-valueTypes: keton, weight, bloodsugar, bloodpressure, diary
+valueTypes: keton, weight, bloodsugar, bloodpressure
 examples:
 db.getHealthData(1, 'bloodsugar')
 db.setHealthData(1, 'bloodsugar', 1.37)
+*/
+
+/*
+diary
+chat
 
 */
 
+
 const db = {
   db: app.database(),
-  getHealthData: function(patientId, valueType, onceHandler, updateHandler) {
+  getData: function(patientId, valueType, onceHandler, updateHandler) {
     this.db.ref('patient' + patientId + '/healthdata/' + valueType).once('value', onceHandler);
     
     this.db.ref('patient' + patientId + '/healthdata/' + valueType).orderByChild('timestamp').startAt(Date.now()).on('child_added', updateHandler);
   },
-  setHealthData: function(patientId, valueType, value) {
+  setData: function(patientId, valueType, value1, value2) {
     var newDataRef = this.db.ref('patient' + patientId + '/healthdata/' + valueType).push();
-    newDataRef.set({
-      data: value,
-      timestamp: firebase.database.ServerValue.TIMESTAMP
-    });
+    if(value2 === undefined) {
+      newDataRef.set({
+        data: value1,
+        timestamp: firebase.database.ServerValue.TIMESTAMP
+      });
+    } else {
+      newDataRef.set({
+        data: {"systolic": value1, "diabolic": value2},
+        timestamp: firebase.database.ServerValue.TIMESTAMP
+      });
+    }
+    
   }
 }
+db.setData(1, 'diary', "Hej, detta är mitt tredje meddelande");
+db.setData(1, 'bloodpressure', 120, 80);
 export default db;
