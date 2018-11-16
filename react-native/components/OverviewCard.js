@@ -8,9 +8,12 @@ export default class OverviewCard extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.titleContainer}>
-          <Text>{this.props.title}</Text>
-          <TouchableOpacity onPress={this.props.onArrowPress}>
-            <Icon.Ionicons size={20} name={'ios-arrow-forward'} />
+          <Text style={styles.title}>{this.props.title}</Text>
+          <TouchableOpacity
+            onPress={this.props.onArrowPress}
+            style={styles.arrow}
+          >
+            <Icon.Ionicons size={25} name={'ios-arrow-forward'} />
           </TouchableOpacity>
         </View>
         <View style={styles.graph}>
@@ -40,5 +43,11 @@ const styles = StyleSheet.create({
     height: 100,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  arrow: {
+    padding: 3,
+  },
+  title: {
+    paddingTop: 3,
   },
 });
