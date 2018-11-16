@@ -6,7 +6,7 @@ import { Icon } from 'expo';
 
 export default class CalendarScreen extends React.Component {
   static navigationOptions = {
-    title: 'Calendar',
+    title: 'Kalender',
   };
 
   render() {

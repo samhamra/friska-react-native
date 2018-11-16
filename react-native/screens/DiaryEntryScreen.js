@@ -10,7 +10,7 @@ import {
 import { LIGHT_GREY, DARK_GREY } from '../styles/colors';
 export default class DiaryEntryScreen extends React.Component {
   static navigationOptions = {
-    title: 'DiaryEntry',
+    title: 'Dagboksinlägg',
   };
 
   render() {

@@ -12,6 +12,9 @@ import PropTypes from 'prop-types';
 import { DARK_GREY, LIGHT_GREY } from '../styles/colors';
 
 export default class SelectModal extends React.Component {
+  static navigationOptions = {
+    title: 'Mer',
+  };
   render() {
     const { navigate } = this.props.navigation;
     return (

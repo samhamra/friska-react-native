@@ -5,7 +5,7 @@ import { LIGHT_GREY } from '../styles/colors';
 
 export default class OverviewScreen extends React.Component {
   static navigationOptions = {
-    title: 'Overview',
+    title: 'Mätvärden',
   };
 
   render() {

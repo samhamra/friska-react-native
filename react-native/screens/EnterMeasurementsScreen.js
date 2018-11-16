@@ -17,7 +17,7 @@ export default class EnterMeasurementsScreen extends React.Component {
     this.state = {};
   }
   static navigationOptions = {
-    title: 'EnterMeasurements',
+    title: 'Skriv in mätvärde',
   };
   render() {
     return (
