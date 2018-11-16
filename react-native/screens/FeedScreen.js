@@ -73,6 +73,7 @@ export default class FeedScreen extends Component {
   };
   static navigationOptions = ({ navigation }) => {
     return {
+      title: 'Tidslinje',
       headerRight: <AddButton onPress={navigation.getParam('openModal')} />,
     };
   };

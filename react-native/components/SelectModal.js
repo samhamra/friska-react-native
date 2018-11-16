@@ -24,6 +24,7 @@ export default class SelectModal extends React.Component {
         animationType="fade"
         transparent={false}
         visible={this.props.isOpen}
+        onRequestClose={() => {}}
       >
         <View style={styles.container}>
           <View style={styles.button}>

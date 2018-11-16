@@ -22,6 +22,7 @@ import {
   DiaryEntryScreen,
   EnterMeasurementsScreen,
   CalendarScreen,
+  MoreScreen,
 } from '../screens';
 import { TabBarIcon } from '../components';
 
@@ -105,43 +106,27 @@ FeedStack.navigationOptions = {
     />
   ),
 };
-
-export const DrawerNavigator = createDrawerNavigator({
-  Chat: ChatScreen,
-  Diary: DiaryEntryScreen,
+const MoreStack = createStackNavigator({
+  More: MoreScreen,
 });
-DrawerNavigator.navigationOptions = {};
-
-class More extends React.Component {
-  render() {
-    return null;
-  }
-}
+MoreStack.navigationOptions = {
+  tabBarLabel: 'Mer',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-more${focused ? '' : '-outline'}`
+          : 'md-more'
+      }
+    />
+  ),
+};
 
 const MainTabNavigator = createBottomTabNavigator({
   CalendarStack,
   MeasurementsStack,
   FeedStack,
-  More: {
-    screen: More,
-    navigationOptions: {
-      tabBarOnPress: ({ previousScene, scene, jumpToIndex, navigation }) => {
-        console.log(navigation);
-        console.log('hej');
-        navigation.navigate('drawerOpen');
-      },
-      tabBarLabel: 'Mer',
-      tabBarIcon: ({ focused }) => (
-        <TabBarIcon
-          focused={focused}
-          name={
-            Platform.OS === 'ios'
-              ? `ios-more${focused ? '' : '-outline'}`
-              : 'md-more'
-          }
-        />
-      ),
-    },
-  },
+  MoreStack,
 });
 export default MainTabNavigator;
