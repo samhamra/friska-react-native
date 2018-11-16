@@ -27,49 +27,56 @@ export default class EnterMeasurementsScreen extends React.Component {
           <View style={styles.inline}>
             <View style={styles.halfWidth}>
               <Text>Övertryck</Text>
-              <TextInput
-                value={this.state.systolicpressure}
-                onChangeText={t => this.setState({ systolicpressure: t })}
-                style={styles.input}
-              />
+              <View style={[styles.textAreaContainer, styles.spacing]}>
+                <TextInput
+                  underlineColorAndroid="transparent"
+                  value={this.state.systolicpressure}
+                  onChangeText={t => this.setState({ systolicpressure: t })}
+                  style={styles.input}
+                />
+              </View>
             </View>
             <View style={styles.halfWidth}>
               <Text>Undertryck</Text>
-              <TextInput
-                value={this.state.diatolicpressure}
-                onChangeText={t => this.setState({ diatolicpressure: t })}
-                style={styles.input}
-              />
+              <View style={styles.textAreaContainer}>
+                <TextInput
+                  underlineColorAndroid="transparent"
+                  value={this.state.diatolicpressure}
+                  onChangeText={t => this.setState({ diatolicpressure: t })}
+                  style={styles.input}
+                />
+              </View>
             </View>
           </View>
           <Text style={styles.fieldName}>Ketoner</Text>
-          <TextInput
-            value={this.state.ketones}
-            onChangeText={t => this.setState({ ketones: t })}
-            style={[styles.input, styles.halfWidth]}
-          />
+          <View style={[styles.textAreaContainer, styles.halfWidth]}>
+            <TextInput
+              underlineColorAndroid="transparent"
+              value={this.state.ketones}
+              onChangeText={t => this.setState({ ketones: t })}
+              style={styles.input}
+            />
+          </View>
           <Text style={styles.fieldName}>Vikt</Text>
-          <TextInput
-            value={this.state.weight}
-            onChangeText={t => this.setState({ weight: t })}
-            style={[styles.input, styles.halfWidth]}
-          />
+          <View style={[styles.textAreaContainer, styles.halfWidth]}>
+            <TextInput
+              underlineColorAndroid="transparent"
+              value={this.state.weight}
+              onChangeText={t => this.setState({ weight: t })}
+              style={styles.input}
+            />
+          </View>
           <Text style={styles.fieldName}>Blodsocker</Text>
-          <TextInput
-            value={this.state.bloodsugar}
-            onChangeText={t => this.setState({ bloodsugar: t })}
-            style={[styles.input, styles.halfWidth]}
-          />
-          <View style={styles.button}>
-            <TouchableOpacity
-              onPress={() => {
-                {
-                  /* console.log(this.state) */
-                }
-              }}
-            >
-              <Text style={styles.buttonText}>Spara</Text>
-            </TouchableOpacity>
+          <View style={[styles.textAreaContainer, styles.halfWidth]}>
+            <TextInput
+              underlineColorAndroid="transparent"
+              value={this.state.bloodsugar}
+              onChangeText={t => this.setState({ bloodsugar: t })}
+              style={styles.input}
+            />
+          </View>
+          <View style={styles.save}>
+            <Button title="Spara" color={DARK_GREY} onPress={() => {}} />
           </View>
         </View>
       </View>
@@ -99,11 +106,9 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   input: {
-    fontSize: 15,
-    height: 25,
-    borderWidth: 1,
-    borderColor: '#009688',
-    borderRadius: 7,
+    height: 20,
+    justifyContent: 'flex-start',
+    textAlignVertical: 'top',
   },
   halfWidth: {
     width: '50%',
@@ -126,5 +131,16 @@ const styles = StyleSheet.create({
   },
   inline: {
     flexDirection: 'row',
+  },
+  textAreaContainer: {
+    borderColor: LIGHT_GREY,
+    padding: 5,
+    borderWidth: 1,
+  },
+  spacing: {
+    marginRight: 15,
+  },
+  save: {
+    paddingTop: 10,
   },
 });
