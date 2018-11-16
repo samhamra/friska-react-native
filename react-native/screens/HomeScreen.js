@@ -12,7 +12,7 @@ import {
 import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText';
-import { LineGraph } from '../components/LineGraph';
+import { LineChartTest } from '../components/LineChartTest';
 
 export default class HomeScreen extends React.Component {
   state = {};
@@ -32,15 +32,89 @@ export default class HomeScreen extends React.Component {
   }
 
   render() {
+    let example = [
+      { date: new Date(2007, 3, 24), weight: 63.24 },
+      { date: new Date(2007, 3, 25), weight: 85.35 },
+      { date: new Date(2007, 3, 26), weight: 78.84 },
+      { date: new Date(2007, 3, 27), weight: 99.92 },
+      { date: new Date(2007, 3, 30), weight: 49.8 },
+      { date: new Date(2007, 4, 1), weight: 99.47 },
+    ];
+    let exerciseObj = {
+      'Barbell Bench Press': [
+        [new Date(2018, 1, 5), 22],
+        [new Date(2018, 1, 8), 22],
+        [new Date(2018, 1, 11), 24],
+        [new Date(2018, 1, 16), 26],
+        [new Date(2018, 1, 27), 40],
+      ],
+      'Dumbbell Bench Press': [
+        [new Date(2018, 1, 2), 40],
+        [new Date(2018, 1, 6), 60],
+        [new Date(2018, 1, 9), 50],
+        [new Date(2018, 1, 20), 30],
+        [new Date(2018, 1, 22), 80],
+      ],
+    };
+    let colorArray = [
+      '#FF6633',
+      '#FFB399',
+      '#FF33FF',
+      '#FFFF99',
+      '#00B3E6',
+      '#E6B333',
+      '#3366E6',
+      '#999966',
+      '#99FF99',
+      '#B34D4D',
+      '#80B300',
+      '#809900',
+      '#E6B3B3',
+      '#6680B3',
+      '#66991A',
+      '#FF99E6',
+      '#CCFF1A',
+      '#FF1A66',
+      '#E6331A',
+      '#33FFCC',
+      '#66994D',
+      '#B366CC',
+      '#4D8000',
+      '#B33300',
+      '#CC80CC',
+      '#66664D',
+      '#991AFF',
+      '#E666FF',
+      '#4DB3FF',
+      '#1AB399',
+      '#E666B3',
+      '#33991A',
+      '#CC9999',
+      '#B3B31A',
+      '#00E680',
+      '#4D8066',
+      '#809980',
+      '#E6FF80',
+      '#1AFF33',
+      '#999933',
+      '#FF3380',
+      '#CCCC00',
+      '#66E64D',
+      '#4D80CC',
+      '#9900B3',
+      '#E64D66',
+      '#4DB380',
+      '#FF4D4D',
+      '#99E6E6',
+      '#6666FF',
+    ];
     return (
       <View style={styles.container}>
         <ScrollView
           style={styles.container}
           contentContainerStyle={styles.contentContainer}
         >
-          <View>
-            <LineGraph />
-          </View>
+          <LineChartTest />
           <View style={styles.welcomeContainer}>
             <Image
               source={
