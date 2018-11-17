@@ -33,22 +33,29 @@ const db = {
     
     this.db.ref('patient' + patientId + '/healthdata/' + valueType).orderByChild('timestamp').startAt(Date.now()).on('child_added', updateHandler);
   },
-  setData: function(patientId, valueType, value1, value2) {
+  setData: function(patientId, valueType, value) {
     var newDataRef = this.db.ref('patient' + patientId + '/healthdata/' + valueType).push();
-    if(value2 === undefined) {
       newDataRef.set({
-        data: value1,
+        data: value,
         timestamp: firebase.database.ServerValue.TIMESTAMP
       });
-    } else {
-      newDataRef.set({
-        data: {"systolic": value1, "diabolic": value2},
-        timestamp: firebase.database.ServerValue.TIMESTAMP
-      });
-    }
+  },
+  setDataWrapper: function(patientId, valueObj) {
+  for(var prop in valueObj) {
+    this.setData(patientId, prop, valueObj[prop])
+  }
     
   }
 }
 db.setData(1, 'diary', "Hej, detta är mitt tredje meddelande");
-db.setData(1, 'bloodpressure', 120, 80);
+var state = {
+  weight: 70,
+  ketons: 1.4,
+  bloodsugar: 1.5,
+  diatolic: 75,
+  systolic: 124,
+}
+db.setDataWrapper(1, state)
+
+
 export default db;
