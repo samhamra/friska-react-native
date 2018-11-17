@@ -7,22 +7,27 @@ import {
   KeyboardAvoidingView,
   Button,
 } from 'react-native';
-
+import { LIGHT_GREY, DARK_GREY } from '../styles/colors';
 export default class DiaryEntryScreen extends React.Component {
   static navigationOptions = {
-    title: 'DiaryEntry',
+    title: 'Dagboksinlägg',
   };
 
   render() {
     return (
       <KeyboardAvoidingView style={styles.container}>
-        <TextInput
-          multiline
-          style={styles.input}
-          placeholder="Skriv ditt inlägg här"
-        />
+        <View style={styles.textAreaContainer}>
+          <TextInput
+            style={styles.textArea}
+            underlineColorAndroid="transparent"
+            placeholder="Vad har du gjort idag?"
+            placeholderTextColor="grey"
+            numberOfLines={10}
+            multiline={true}
+          />
+        </View>
         <View style={styles.save}>
-          <Button title="Spara" onPress={() => {}} />
+          <Button title="Spara" color={DARK_GREY} onPress={() => {}} />
         </View>
       </KeyboardAvoidingView>
     );
@@ -32,13 +37,19 @@ export default class DiaryEntryScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 15,
-    backgroundColor: '#fff',
+    padding: 20,
+    backgroundColor: LIGHT_GREY,
   },
-  input: {
-    fontSize: 25,
+  textAreaContainer: {
+    backgroundColor: '#fff',
+    padding: 5,
+  },
+  textArea: {
+    height: 150,
+    justifyContent: 'flex-start',
+    textAlignVertical: 'top',
   },
   save: {
-    alignSelf: 'flex-end',
+    paddingTop: 10,
   },
 });

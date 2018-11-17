@@ -3,6 +3,7 @@ import { Platform } from 'react-native';
 import {
   createStackNavigator,
   createBottomTabNavigator,
+  createDrawerNavigator,
 } from 'react-navigation';
 import {
   HomeScreen,
@@ -21,6 +22,7 @@ import {
   DiaryEntryScreen,
   EnterMeasurementsScreen,
   CalendarScreen,
+  MoreScreen,
 } from '../screens';
 import { TabBarIcon } from '../components';
 
@@ -104,11 +106,27 @@ FeedStack.navigationOptions = {
     />
   ),
 };
+const MoreStack = createStackNavigator({
+  More: MoreScreen,
+});
+MoreStack.navigationOptions = {
+  tabBarLabel: 'Mer',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-more${focused ? '' : '-outline'}`
+          : 'md-more'
+      }
+    />
+  ),
+};
 
 const MainTabNavigator = createBottomTabNavigator({
   CalendarStack,
   MeasurementsStack,
   FeedStack,
-  ChatStack,
+  MoreStack,
 });
 export default MainTabNavigator;

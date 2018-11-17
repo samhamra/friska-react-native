@@ -1,26 +1,34 @@
 import React from 'react';
-import { View, StyleSheet, Text, Button } from 'react-native';
+import { ScrollView, StyleSheet, Text, Button } from 'react-native';
+import { OverviewCard } from '../components';
+import { LIGHT_GREY } from '../styles/colors';
 
 export default class OverviewScreen extends React.Component {
   static navigationOptions = {
-    title: 'Overview',
+    title: 'Mätvärden',
   };
 
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <View style={styles.container}>
-        <Button onPress={() => navigate('WeightView')} title="Weight" />
-        <Button
-          onPress={() => navigate('BloodPressureView')}
-          title="Blood Pressure"
+      <ScrollView style={styles.container}>
+        <OverviewCard
+          title="Blodtryck"
+          onArrowPress={() => navigate('BloodPressureView')}
         />
-        <Button
-          onPress={() => navigate('BloodSugarView')}
-          title="Blood Sugar"
+        <OverviewCard
+          title="Blodsocker"
+          onArrowPress={() => navigate('BloodSugarView')}
         />
-        <Button onPress={() => navigate('KetonesView')} title="Ketones" />
-      </View>
+        <OverviewCard
+          title="Ketoner"
+          onArrowPress={() => navigate('KetonesView')}
+        />
+        <OverviewCard
+          title="Vikt"
+          onArrowPress={() => navigate('WeightView')}
+        />
+      </ScrollView>
     );
   }
 }
@@ -28,7 +36,7 @@ export default class OverviewScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 15,
-    backgroundColor: '#fff',
+    padding: 15,
+    backgroundColor: LIGHT_GREY,
   },
 });
