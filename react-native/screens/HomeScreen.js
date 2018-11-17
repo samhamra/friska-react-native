@@ -28,7 +28,7 @@ export default class HomeScreen extends React.Component {
   };
 
   componentDidMount() {
-    db.getHealthData(1, 'weight', this.onceHandler, this.updateHandler);
+    db.getData(1, 'weight', this.onceHandler, this.updateHandler);
 
   }
   
@@ -87,7 +87,7 @@ export default class HomeScreen extends React.Component {
           <View>
             
             <Button
-              onPress={() => db.setHealthData(1, 'weight', '70')}
+              onPress={() => db.setData(1, 'weight', '70')}
               title="Try inserting some weight data"
               color="#841584"
             />

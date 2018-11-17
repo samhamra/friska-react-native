@@ -13,26 +13,49 @@ const firebaseConfig = {
 var app = firebase.initializeApp(firebaseConfig);
 
 /*
-valueTypes: keton, weight, bloodsugar, bloodpressure, diary
+valueTypes: keton, weight, bloodsugar, bloodpressure
 examples:
 db.getHealthData(1, 'bloodsugar')
 db.setHealthData(1, 'bloodsugar', 1.37)
+*/
+
+/*
+diary
+chat
 
 */
 
+
 const db = {
   db: app.database(),
-  getHealthData: function(patientId, valueType, onceHandler, updateHandler) {
+  getData: function(patientId, valueType, onceHandler, updateHandler) {
     this.db.ref('patient' + patientId + '/healthdata/' + valueType).once('value', onceHandler);
     
     this.db.ref('patient' + patientId + '/healthdata/' + valueType).orderByChild('timestamp').startAt(Date.now()).on('child_added', updateHandler);
   },
-  setHealthData: function(patientId, valueType, value) {
+  setData: function(patientId, valueType, value) {
     var newDataRef = this.db.ref('patient' + patientId + '/healthdata/' + valueType).push();
-    newDataRef.set({
-      data: value,
-      timestamp: firebase.database.ServerValue.TIMESTAMP
-    });
+      newDataRef.set({
+        data: value,
+        timestamp: firebase.database.ServerValue.TIMESTAMP
+      });
+  },
+  setDataWrapper: function(patientId, valueObj) {
+  for(var prop in valueObj) {
+    this.setData(patientId, prop, valueObj[prop])
+  }
+    
   }
 }
+db.setData(1, 'diary', "Hej, detta är mitt tredje meddelande");
+var state = {
+  weight: 70,
+  ketons: 1.4,
+  bloodsugar: 1.5,
+  diatolic: 75,
+  systolic: 124,
+}
+db.setDataWrapper(1, state)
+
+
 export default db;
