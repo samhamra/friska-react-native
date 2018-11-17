@@ -3,69 +3,130 @@ import { Platform } from 'react-native';
 import {
   createStackNavigator,
   createBottomTabNavigator,
+  createDrawerNavigator,
 } from 'react-navigation';
+import {
+  HomeScreen,
+  LinksScreen,
+  SettingsScreen,
+  ChatScreen,
+  AddScreen,
+  ChatSelectScreen,
+  OverviewScreen,
+  WeightViewScreen,
+  BloodPressureViewScreen,
+  BloodSugarViewScreen,
+  KetonesViewScreen,
+  FeedScreen,
+  AddSelectScreen,
+  DiaryEntryScreen,
+  EnterMeasurementsScreen,
+  CalendarScreen,
+  MoreScreen,
+} from '../screens';
+import { TabBarIcon } from '../components';
 
-import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
-
-const HomeStack = createStackNavigator({
-  Home: HomeScreen,
+const MeasurementsStack = createStackNavigator({
+  Overview: OverviewScreen,
+  WeightView: WeightViewScreen,
+  BloodPressureView: BloodPressureViewScreen,
+  BloodSugarView: BloodSugarViewScreen,
+  KetonesView: KetonesViewScreen,
 });
 
-HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+MeasurementsStack.navigationOptions = {
+  tabBarLabel: 'Measurements',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
       name={
         Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
+          ? `ios-home${focused ? '' : '-outline'}`
+          : 'md-home'
       }
     />
   ),
 };
 
-const LinksStack = createStackNavigator({
-  Links: LinksScreen,
+const CalendarStack = createStackNavigator({
+  Calendar: CalendarScreen,
 });
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+CalendarStack.navigationOptions = {
+  tabBarLabel: 'Calendar',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
       name={
         Platform.OS === 'ios'
-          ? `ios-link${focused ? '' : '-outline'}`
-          : 'md-link'
+          ? `ios-calendar${focused ? '' : '-outline'}`
+          : 'md-calendar'
       }
     />
   ),
 };
 
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
+const ChatStack = createStackNavigator({
+  Select: ChatSelectScreen,
+  Chat: ChatScreen,
 });
 
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
+ChatStack.navigationOptions = {
+  tabBarLabel: 'Chat',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
       name={
         Platform.OS === 'ios'
-          ? `ios-options${focused ? '' : '-outline'}`
-          : 'md-options'
+          ? `ios-chatbubbles${focused ? '' : '-outline'}`
+          : 'md-chatbubbles'
       }
     />
   ),
 };
 
-export default createBottomTabNavigator({
-  HomeStack,
-  LinksStack,
-  SettingsStack,
+const FeedStack = createStackNavigator({
+  Feed: FeedScreen,
+  Select: AddSelectScreen,
+  Diary: DiaryEntryScreen,
+  Chat: ChatScreen,
+  EnterMeasurements: EnterMeasurementsScreen,
 });
+
+FeedStack.navigationOptions = {
+  tabBarLabel: 'Feed',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-paper${focused ? '' : '-outline'}`
+          : 'md-paper'
+      }
+    />
+  ),
+};
+const MoreStack = createStackNavigator({
+  More: MoreScreen,
+});
+MoreStack.navigationOptions = {
+  tabBarLabel: 'Mer',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-more${focused ? '' : '-outline'}`
+          : 'md-more'
+      }
+    />
+  ),
+};
+
+const MainTabNavigator = createBottomTabNavigator({
+  CalendarStack,
+  MeasurementsStack,
+  FeedStack,
+  MoreStack,
+});
+export default MainTabNavigator;
