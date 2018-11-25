@@ -52,8 +52,8 @@ var state = {
   weight: 70,
   ketons: 1.4,
   bloodsugar: 1.5,
-  diatolic: 75,
-  systolic: 124,
+  diastolic: 73,
+  systolic: 127,
 }
 db.setDataWrapper(1, state)
 
