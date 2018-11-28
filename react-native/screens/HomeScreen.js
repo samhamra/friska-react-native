@@ -12,17 +12,16 @@ import {
 } from 'react-native';
 import { WebBrowser } from 'expo';
 
-import { LineChartTest } from '../components/LineChartTest';
+import { LineChartTest } from '../components';
 import { MonoText } from '../components';
 
 export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      weight: {}
-    }
+      weight: {},
+    };
   }
-
 
   static navigationOptions = {
     header: null,
@@ -30,30 +29,31 @@ export default class HomeScreen extends React.Component {
 
   componentDidMount() {
     db.getData(1, 'weight', this.onceHandler, this.updateHandler);
+  }
 
-  }
-  
-  onceHandler = (data) => {
-   this.setState({weight: data.val()})
-  }
-  
+  onceHandler = data => {
+    this.setState({ weight: data.val() });
+  };
+
   renderWeight = () => {
-     return Object.keys(this.state.weight).map((key) => {
-       return (
-          <Text>Weight: {this.state.weight[key].data} Timestamp: {this.state.weight[key].timestamp}</Text>
-       )
-     })
-  }
-  
-  
-  updateHandler = (data) => {
+    return Object.keys(this.state.weight).map(key => {
+      return (
+        <Text>
+          Weight: {this.state.weight[key].data} Timestamp:{' '}
+          {this.state.weight[key].timestamp}
+        </Text>
+      );
+    });
+  };
+
+  updateHandler = data => {
     var result = this.state.weight;
     result[data.val().timestamp] = data.val();
-    this.setState((state) => {
-    // Important: read `state` instead of `this.state` when updating.
-    return {weight: result}
+    this.setState(state => {
+      // Important: read `state` instead of `this.state` when updating.
+      return { weight: result };
     });
-  }
+  };
 
   render() {
     return (
@@ -77,37 +77,6 @@ export default class HomeScreen extends React.Component {
             {' '}
             {this._maybeRenderDevelopmentModeWarning()}
             <Text style={styles.getStartedText}> Get started by opening </Text>
-            <View
-              style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
-            >
-              <MonoText style={styles.codeHighlightText}>
-                {' '}
-                screens / HomeScreen.js{' '}
-              </MonoText>{' '}
-            </View>
-<<<<<<< HEAD
-            {this.state.persons ? (
-              this.state.persons.map(function(data, key) {
-                return <Text key={key}>{data.name}</Text>;
-              })
-            ) : (
-              <Text> Hello that</Text>
-            )}
-            {console.log('state: ' + JSON.stringify(this.state))}
-=======
-          </View>
-          <View>
-            
-            <Button
-              onPress={() => db.setData(1, 'weight', '70')}
-              title="Try inserting some weight data"
-              color="#841584"
-            />
-            
-          {this.renderWeight()}
-          
-          
->>>>>>> master
           </View>
           <View style={styles.helpContainer}>
             <TouchableOpacity

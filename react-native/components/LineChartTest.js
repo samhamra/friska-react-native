@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, Dimensions } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 
-export class LineChartTest extends React.Component {
+export default class LineChartTest extends React.Component {
   render() {
     const alternativeData = {
       labels: ['January', 'February', 'March', 'April', 'May', 'June'],
@@ -34,31 +34,7 @@ export class LineChartTest extends React.Component {
       <View>
         <Text>Bezier Line Chart</Text>
         <LineChart
-          data={{
-            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-            datasets: [
-              {
-                data: [
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                ],
-              },
-              {
-                data: [
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                ],
-              },
-            ],
-          }}
+          data={alternativeData}
           width={Dimensions.get('window').width} // from react-native
           height={220}
           chartConfig={chartConfig}

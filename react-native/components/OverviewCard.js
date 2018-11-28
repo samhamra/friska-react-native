@@ -2,6 +2,7 @@ import React from 'react';
 import { Icon } from 'expo';
 import { View, StyleSheet, Text, Button, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
+import { CardChart } from '.';
 
 export default class OverviewCard extends React.Component {
   render() {
@@ -17,7 +18,7 @@ export default class OverviewCard extends React.Component {
           </TouchableOpacity>
         </View>
         <View style={styles.graph}>
-          <Text>GRAF</Text>
+          <CardChart width={200} height={100} />
         </View>
       </View>
     );
