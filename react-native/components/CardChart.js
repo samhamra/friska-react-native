@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions } from 'react-native';
+import { Text, Dimensions } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 import { db } from '../config';
 
@@ -7,6 +7,7 @@ export default class CardChart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: true,
       data: null,
     };
   }
@@ -15,26 +16,35 @@ export default class CardChart extends React.Component {
   }
   getData = () => {
     // Hämta data, formatData() return
-    let res = db.getData(1, 'weight', this.onceHandler, this.formatData);
-    console.log('getData: ', res);
-    this.formatData(res);
+    db.getData(1, 'weight', this.onceHandler, this.formatData);
+
     return null;
   };
   formatData = res => {
-    let formattedData = res;
+    // new data in db component should update
+  };
+  onceHandler = res => {
+    let formattedData = [];
+    let timestamps = [];
+    res.forEach(obj => {
+      console.log(obj['data']);
+      formattedData.push({ data: obj['data'] });
+      timestamps.push(new Date(obj['timestamp']));
+    });
 
-    if (formattedData) {
+    let dataObj = {
+      labels: timestamps,
+      datasets: formattedData,
+    };
+
+    if (formattedData.length > 0) {
       this.setState({
-        data: formattedData,
+        data: dataObj,
+        loading: false,
       });
-      console.log(formattedData);
     } else {
       console.log('something went wrong');
     }
-    return formattedData;
-  };
-  onceHandler = res => {
-    console.log(res);
   };
   render() {
     let { width, height } = this.props;
@@ -55,17 +65,20 @@ export default class CardChart extends React.Component {
       color: (opacity = 1) => `rgba(44, 249, 222, ${opacity})`,
     };
 
-    return (
-      <LineChart
-        data={alternativeData}
-        width={width} // from react-native
-        height={height}
-        chartConfig={chartConfig}
-        bezier
-        style={{
-          marginVertical: 8,
-        }}
-      />
-    );
+    // this.state.data ? (
+    //   <LineChart
+    //     data={this.state.data}
+    //     width={width} // from react-native
+    //     height={height}
+    //     chartConfig={chartConfig}
+    //     bezier
+    //     style={{
+    //       marginVertical: 8,
+    //     }}
+    //   />
+    // ) : (
+    let chart = <Text>Loading..</Text>;
+
+    return chart;
   }
 }

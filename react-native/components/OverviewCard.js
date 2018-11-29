@@ -18,7 +18,7 @@ export default class OverviewCard extends React.Component {
           </TouchableOpacity>
         </View>
         <View style={styles.graph}>
-          <CardChart width={200} height={100} />
+          <CardChart type={this.props.title} width={200} height={100} />
         </View>
       </View>
     );
