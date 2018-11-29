@@ -15,7 +15,7 @@ export default class CardChart extends React.Component {
     this.getData();
   }
   getData = () => {
-    // Hämta data, formatData() return
+    // Hämtar data
     db.getData(1, 'weight', this.onceHandler, this.formatData);
 
     return null;
@@ -24,12 +24,13 @@ export default class CardChart extends React.Component {
     // new data in db component should update
   };
   onceHandler = res => {
+    // console.log av res ger ett object som känns rimligt
     let formattedData = [];
     let timestamps = [];
+
     res.forEach(obj => {
-      console.log(obj['data']);
-      formattedData.push({ data: obj['data'] });
-      timestamps.push(new Date(obj['timestamp']));
+      formattedData.push({ data: obj.data });
+      timestamps.push(new Date(obj.timestamp));
     });
 
     let dataObj = {
@@ -43,6 +44,7 @@ export default class CardChart extends React.Component {
         loading: false,
       });
     } else {
+      // Hamnar aldrig här..
       console.log('something went wrong');
     }
   };
@@ -65,20 +67,17 @@ export default class CardChart extends React.Component {
       color: (opacity = 1) => `rgba(44, 249, 222, ${opacity})`,
     };
 
-    // this.state.data ? (
-    //   <LineChart
-    //     data={this.state.data}
-    //     width={width} // from react-native
-    //     height={height}
-    //     chartConfig={chartConfig}
-    //     bezier
-    //     style={{
-    //       marginVertical: 8,
-    //     }}
-    //   />
-    // ) : (
-    let chart = <Text>Loading..</Text>;
-
-    return chart;
+    return (
+      <LineChart
+        data={this.state.data !== null ? this.state.data : alternativeData}
+        width={width} // from react-native
+        height={height}
+        chartConfig={chartConfig}
+        bezier
+        style={{
+          marginVertical: 8,
+        }}
+      />
+    );
   }
 }
