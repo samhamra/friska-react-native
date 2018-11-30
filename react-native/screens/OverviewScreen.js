@@ -24,7 +24,7 @@ export default class OverviewScreen extends React.Component {
               <OverviewCard
                 key={i}
                 title={type} 
-                onArrowPress={() => navigate('BloodPressureView')}
+                onArrowPress={() => navigate(type + 'View')}
               />
             ) 
           })  
