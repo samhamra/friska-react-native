@@ -4,33 +4,34 @@ import { OverviewCard } from '../components';
 import { LIGHT_GREY } from '../styles/colors';
 
 export default class OverviewScreen extends React.Component {
+
+  
   static navigationOptions = {
     title: 'Mätvärden',
   };
 
+  
+  
   render() {
+    var types = ["weight", "ketons", "bloodsugar"];
+    
     const { navigate } = this.props.navigation;
     return (
       <ScrollView style={styles.container}>
-        <OverviewCard
-          title="Blodtryck"
-          onArrowPress={() => navigate('BloodPressureView')}
-        />
-        <OverviewCard
-          title="Blodsocker"
-          onArrowPress={() => navigate('BloodSugarView')}
-        />
-        <OverviewCard
-          title="Ketoner"
-          onArrowPress={() => navigate('KetonesView')}
-        />
-        <OverviewCard
-          title="Vikt"
-          onArrowPress={() => navigate('WeightView')}
-        />
+        {
+          types.map((type, i) => {      
+            return (
+              <OverviewCard
+                key={i}
+                title={type} 
+                onArrowPress={() => navigate(type + 'View')}
+              />
+            ) 
+          })  
+        }
       </ScrollView>
-    );
-  }
+    )
+}
 }
 
 const styles = StyleSheet.create({

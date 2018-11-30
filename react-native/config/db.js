@@ -24,7 +24,9 @@ diary
 chat
 
 */
-
+function getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
 
 const db = {
   db: app.database(),
@@ -60,17 +62,20 @@ const db = {
     
   }
 }
-db.setData(1, 'diary', "Hej, detta är mitt tredje meddelande");
 var state = {
-  weight: 70,
-  ketons: 1.4,
-  bloodsugar: 1.5,
-  diastolic: 73,
-  systolic: 127,
+  weight: 72,
+  ketons: 1.35,
+  bloodsugar: 1.49,
+  diatolic: 73,
+  systolic: 126,
 }
+// for (var i = 0; i < 10; i++) {
+//   state.weight = getRndInteger(65, 75)
+//   state.ketons = Number((Math.random() * (1.40 - 1.30) + 1.30).toFixed(4));
+//   state.bloodsugar = Number((Math.random() * (1.52 - 1.45) + 1.30).toFixed(4));
+//   db.setDataWrapper(1, state)
+// }
 
-var sam = function() {
-  console.log("data stored");
-}
-db.setDataWrapper(1, state, sam);
+
+
 export default db;

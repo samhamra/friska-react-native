@@ -4,6 +4,8 @@ import FriskaCalendar from './FriskaCalendar';
 import OverviewCard from './OverviewCard';
 import FeedAccordion from './FeedAccordion';
 import SelectModal from './SelectModal';
+import LineChartTest from './LineChartTest';
+import CardChart from './CardChart';
 
 export {
   MonoText,
@@ -12,4 +14,6 @@ export {
   OverviewCard,
   FeedAccordion,
   SelectModal,
+  LineChartTest,
+  CardChart,
 };
