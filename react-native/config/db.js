@@ -35,16 +35,29 @@ const db = {
     
     this.db.ref('patient' + patientId + '/healthdata/' + valueType).orderByChild('timestamp').startAt(Date.now()).on('child_added', updateHandler);
   },
-  setData: function(patientId, valueType, value) {
+  setData: function(patientId, valueType, value, callback) {
     var newDataRef = this.db.ref('patient' + patientId + '/healthdata/' + valueType).push();
+    if(callback !== undefined) {
+      console.log("callback defined");
+      newDataRef.set({
+        data: value,
+        timestamp: firebase.database.ServerValue.TIMESTAMP
+      }).then(callback);
+    } else {
+      console.log("callback undefined");
       newDataRef.set({
         data: value,
         timestamp: firebase.database.ServerValue.TIMESTAMP
       });
+    }
   },
-  setDataWrapper: function(patientId, valueObj) {
+  setDataWrapper: function(patientId, valueObj, callback) {
   for(var prop in valueObj) {
-    this.setData(patientId, prop, valueObj[prop])
+    if(prop === Object.keys(valueObj)[Object.keys(valueObj).length - 1]) {
+      this.setData(patientId, prop, valueObj[prop], callback)
+    } else {
+        this.setData(patientId, prop, valueObj[prop])
+    }
   }
     
   }

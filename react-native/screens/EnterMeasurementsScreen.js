@@ -41,8 +41,8 @@ export default class EnterMeasurementsScreen extends React.Component {
               <View style={styles.textAreaContainer}>
                 <TextInput
                   underlineColorAndroid="transparent"
-                  value={this.state.diatolicpressure}
-                  onChangeText={t => this.setState({ diatolicpressure: t })}
+                  value={this.state.diastolicpressure}
+                  onChangeText={t => this.setState({ diastolicpressure: t })}
                   style={styles.input}
                 />
               </View>

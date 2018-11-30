@@ -63,9 +63,6 @@ export default class CardChart extends React.Component {
       backgroundGradientTo: '#08130D',
       color: (opacity = 1) => `rgba(44, 249, 222, ${opacity})`,
     };
-    if(this.state.data!==null) {
-      console.log(JSON.stringify(this.state.data))
-    }
       return (
         <LineChart
           data={this.state.data!==null ? this.state.data : alternativeData}
