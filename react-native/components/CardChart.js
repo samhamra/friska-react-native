@@ -1,5 +1,6 @@
 import React from 'react';
-import { Text, Dimensions } from 'react-native';
+import { Text } from 'react-native';
+import PropTypes from 'prop-types';
 import { LineChart } from 'react-native-chart-kit';
 import { db } from '../config';
 
@@ -8,71 +9,111 @@ export default class CardChart extends React.Component {
     super(props);
     this.state = {
       loading: true,
-      data: null,
+      data: {
+        labels: [],
+        datasets: [],
+      },
     };
-    db.getData(1, this.props.type, this.onceHandler, this.formatData);
-    
+    if (props.type == 'bloodpressure') {
+      db.getData(
+        props.patientId,
+        'diastolic',
+        this.onceHandler,
+        this.formatData
+      );
+      db.getData(
+        props.patientId,
+        'systolic',
+        this.onceHandler,
+        this.formatData
+      );
+    } else {
+      db.getData(
+        props.patientId,
+        props.type,
+        this.onceHandler,
+        this.formatData
+      );
+    }
   }
-  
+
   formatData = res => {
     // new data in db component should update
+    console.log(res.val());
   };
   onceHandler = res => {
-    // console.log av res ger ett object som känns rimligt
-    let formattedData = [];
-    let timestamps = [];
-    var data = res.val();
+    if (res.val() == null) return;
+    let stateData = { ...this.state.data };
+    let newDataset = [];
+    let newLabels = [];
+    let data = res.val();
     Object.keys(data).forEach(key => {
-      formattedData.push(Number(data[key].data));
-      timestamps.push(new Date(data[key].timestamp).toString());
+      newDataset.push(Number(data[key].data));
+      newLabels.push(new Date(data[key].timestamp).getDay());
     });
+    // Remove slice if we do week/month/day getters
+    stateData.labels = [
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+      'Sunday',
+    ];
+    //stateData.labels = newLabels.slice(0, 7);
+    stateData.datasets.push({ data: newDataset.slice(0, 7) });
+    this.setState({
+      data: stateData,
+      loading: false,
+    });
+  };
 
-    var dataObj = {
-      labels: timestamps,
+  render() {
+    let { width, height, type } = this.props;
+    console.log(this.state);
+    const alternativeData = {
+      labels: [
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+        'Sunday',
+      ],
       datasets: [
         {
-          data: formattedData
-        }
-    ]
-    };
-    
-    if (formattedData.length > 0) {
-  
-      this.setState({
-        data: dataObj,
-        loading: false,
-      });
-  
-    } else {
-      // Hamnar aldrig här..
-      console.log('something went wrong during ' + this.props.type);
-    }
-  };
-  render() {
-    let { width, height, type} = this.props;
-    
-
-    const alternativeData = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-      datasets: [{
-        data: [ 20, 45, 28, 80, 99, 43 ]
-      }]
+          data: [20, 45, 28, 80, 99, 43],
+        },
+        {
+          data: [20, 45, 28, 80, 99, 43].reverse(),
+        },
+      ],
     };
     const chartConfig = {
       backgroundGradientFrom: '#213330',
       backgroundGradientTo: '#08130D',
       color: (opacity = 1) => `rgba(44, 249, 222, ${opacity})`,
     };
-      return (
-        <LineChart
-          data={this.state.data!==null ? this.state.data : alternativeData}
-          width={width}
-          height={height}
-          chartConfig={chartConfig}
-          bezier
-        />
-      );
-    
-    
+
+    let chart = this.state.loading ? (
+      <Text>Loading...</Text>
+    ) : (
+      <LineChart
+        data={this.state.data}
+        width={width}
+        height={height}
+        chartConfig={chartConfig}
+        bezier
+      />
+    );
+
+    return chart;
   }
 }
+
+CardChart.propTypes = {
+  title: PropTypes.string,
+  patientId: PropTypes.number,
+};
