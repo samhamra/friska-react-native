@@ -29,7 +29,7 @@ import { TabBarIcon } from '../components';
 const MeasurementsStack = createStackNavigator({
   Overview: OverviewScreen,
   weightView: WeightViewScreen,
-  BloodPressureView: BloodPressureViewScreen,
+  bloodpressureView: BloodPressureViewScreen,
   bloodsugarView: BloodSugarViewScreen,
   ketonsView: KetonesViewScreen,
 });
