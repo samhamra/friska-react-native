@@ -50,7 +50,6 @@ export default class CardChart extends React.Component {
       
       let stateData = {...this.state.data}
       stateData.datasets[0] = {data: newDataset};
-      console.log(stateData);
       this.setState({
         data: stateData,
         loading: false
