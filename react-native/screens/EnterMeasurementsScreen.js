@@ -1,4 +1,5 @@
 import React from 'react';
+import { db } from '../config';
 import {
   ScrollView,
   StyleSheet,
@@ -31,7 +32,7 @@ export default class EnterMeasurementsScreen extends React.Component {
                 <TextInput
                   underlineColorAndroid="transparent"
                   value={this.state.systolicpressure}
-                  onChangeText={t => this.setState({ systolicpressure: t })}
+                  onChangeText={t => this.setState({ systolic: t })}
                   style={styles.input}
                 />
               </View>
@@ -42,7 +43,7 @@ export default class EnterMeasurementsScreen extends React.Component {
                 <TextInput
                   underlineColorAndroid="transparent"
                   value={this.state.diastolicpressure}
-                  onChangeText={t => this.setState({ diastolicpressure: t })}
+                  onChangeText={t => this.setState({ diastolic: t })}
                   style={styles.input}
                 />
               </View>
@@ -52,8 +53,8 @@ export default class EnterMeasurementsScreen extends React.Component {
           <View style={[styles.textAreaContainer, styles.halfWidth]}>
             <TextInput
               underlineColorAndroid="transparent"
-              value={this.state.ketones}
-              onChangeText={t => this.setState({ ketones: t })}
+              value={this.state.ketons}
+              onChangeText={t => this.setState({ ketons: t })}
               style={styles.input}
             />
           </View>
@@ -76,7 +77,7 @@ export default class EnterMeasurementsScreen extends React.Component {
             />
           </View>
           <View style={styles.save}>
-            <Button title="Spara" color={DARK_GREY} onPress={() => {}} />
+            <Button title="Spara" color={DARK_GREY} onPress={() => {db.setDataWrapper(1, this.state, () => (console.log("data sent from EnterMeasurementsScreen")) )}} />
           </View>
         </View>
       </View>

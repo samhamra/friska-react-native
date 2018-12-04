@@ -1,5 +1,5 @@
 import * as firebase from 'firebase';
-
+console.disableYellowBox = true;
 // Initialize Firebase
 const firebaseConfig = {
   apiKey: 'AIzaSyB5nmQ4J5HFchD2bJM6ULKmZcAsKTSQ5WU',
@@ -69,6 +69,7 @@ var state = {
   diatolic: 73,
   systolic: 126,
 }
+
 // for (var i = 0; i < 10; i++) {
 //   state.weight = getRndInteger(65, 75)
 //   state.ketons = Number((Math.random() * (1.40 - 1.30) + 1.30).toFixed(4));

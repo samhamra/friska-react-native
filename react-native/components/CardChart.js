@@ -14,23 +14,27 @@ export default class CardChart extends React.Component {
         datasets: [],
       },
     };
-    if (props.type == 'bloodpressure') {
+    this.getData();
+  }
+  
+  getData() {
+    if (this.props.type == 'bloodpressure') {
       db.getData(
-        props.patientId,
+        this.props.patientId,
         'diastolic',
         this.onceHandler,
         this.formatData
       );
       db.getData(
-        props.patientId,
+        this.props.patientId,
         'systolic',
         this.onceHandler,
         this.formatData
       );
     } else {
       db.getData(
-        props.patientId,
-        props.type,
+        this.props.patientId,
+        this.props.type,
         this.onceHandler,
         this.formatData
       );
@@ -38,8 +42,23 @@ export default class CardChart extends React.Component {
   }
 
   formatData = res => {
-    // new data in db component should update
-    console.log(res.val());
+    if(this.props.type !== 'bloodpressure') {
+      let newDataset = [...this.state.data.datasets[0].data]
+      newDataset.shift();
+      newDataset.push(Number(res.val().data));
+    
+      
+      let stateData = {...this.state.data}
+      stateData.datasets[0] = {data: newDataset};
+      console.log(stateData);
+      this.setState({
+        data: stateData,
+        loading: false
+      });
+    } else {
+      
+    }
+    
   };
   onceHandler = res => {
     if (res.val() == null) return;
@@ -51,6 +70,8 @@ export default class CardChart extends React.Component {
       newDataset.push(Number(data[key].data));
       newLabels.push(new Date(data[key].timestamp).getDay());
     });
+    
+    
     // Remove slice if we do week/month/day getters
     stateData.labels = [
       'Monday',
@@ -62,7 +83,8 @@ export default class CardChart extends React.Component {
       'Sunday',
     ];
     //stateData.labels = newLabels.slice(0, 7);
-    stateData.datasets.push({ data: newDataset.slice(0, 7) });
+    
+    stateData.datasets.push({ data: newDataset.slice(newDataset.length-7, newDataset.length) });
     this.setState({
       data: stateData,
       loading: false,
@@ -70,8 +92,11 @@ export default class CardChart extends React.Component {
   };
 
   render() {
+    if(this.props.type === 'bloodpressure') {
+      console.log(JSON.stringify(this.state.data));
+    }
+    
     let { width, height, type } = this.props;
-    console.log(this.state);
     const alternativeData = {
       labels: [
         'Monday',
