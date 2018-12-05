@@ -19,25 +19,25 @@ export default class CardChart extends React.Component {
         props.patientId,
         'diastolic',
         this.onceHandler,
-        this.formatData
+        this.incomingValues
       );
       db.getData(
         props.patientId,
         'systolic',
         this.onceHandler,
-        this.formatData
+        this.incomingValues
       );
     } else {
       db.getData(
         props.patientId,
         props.type,
         this.onceHandler,
-        this.formatData
+        this.incomingValues
       );
     }
   }
 
-  formatData = res => {
+  incomingValues = res => {
     // new data in db component should update
     console.log(res.val());
   };
@@ -71,7 +71,6 @@ export default class CardChart extends React.Component {
 
   render() {
     let { width, height, type } = this.props;
-    console.log(this.state);
     const alternativeData = {
       labels: [
         'Monday',

@@ -6,32 +6,27 @@ import {
   createDrawerNavigator,
 } from 'react-navigation';
 import {
-  HomeScreen,
-  LinksScreen,
-  SettingsScreen,
   ChatScreen,
   AddScreen,
   ChatSelectScreen,
   OverviewScreen,
-  WeightViewScreen,
-  BloodPressureViewScreen,
-  BloodSugarViewScreen,
-  KetonesViewScreen,
   FeedScreen,
   AddSelectScreen,
   DiaryEntryScreen,
   EnterMeasurementsScreen,
   CalendarScreen,
   MoreScreen,
+  MeasurementScreen,
 } from '../screens';
+
 import { TabBarIcon } from '../components';
 
 const MeasurementsStack = createStackNavigator({
   Overview: OverviewScreen,
-  weightView: WeightViewScreen,
-  bloodpressureView: BloodPressureViewScreen,
-  bloodsugarView: BloodSugarViewScreen,
-  ketonsView: KetonesViewScreen,
+  WeightView: MeasurementScreen,
+  BloodpressureView: MeasurementScreen,
+  BloodsugarView: MeasurementScreen,
+  KetonsView: MeasurementScreen,
 });
 
 MeasurementsStack.navigationOptions = {

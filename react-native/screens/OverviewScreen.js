@@ -9,7 +9,7 @@ export default class OverviewScreen extends React.Component {
   };
 
   render() {
-    var types = ['weight', 'ketons', 'bloodsugar', 'bloodpressure'];
+    var types = ['Weight', 'Ketons', 'Bloodsugar', 'Bloodpressure'];
 
     const { navigate } = this.props.navigation;
     return (
@@ -20,7 +20,7 @@ export default class OverviewScreen extends React.Component {
               key={i}
               title={type}
               patientId={1}
-              onArrowPress={() => navigate(type + 'View')}
+              onCardPress={() => navigate(type + 'View')}
             />
           );
         })}
