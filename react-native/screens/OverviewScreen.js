@@ -9,7 +9,12 @@ export default class OverviewScreen extends React.Component {
   };
 
   render() {
-    var types = ['weight', 'ketons', 'bloodsugar', 'bloodpressure'];
+    var types = [
+      { en: 'Weight', sv: 'Vikt' },
+      { en: 'Ketons', sv: 'Ketoner' },
+      { en: 'Bloodsugar', sv: 'Blodsocker' },
+      { en: 'Bloodpressure', sv: 'Blodtryck' },
+    ];
 
     const { navigate } = this.props.navigation;
     return (
@@ -18,9 +23,12 @@ export default class OverviewScreen extends React.Component {
           return (
             <OverviewCard
               key={i}
-              title={type}
+              type={type}
               patientId={1}
-              onArrowPress={() => navigate(type + 'View')}
+              onCardPress={() => {
+                console.log(type.sv);
+                navigate(type.en + 'View', { type: type });
+              }}
             />
           );
         })}

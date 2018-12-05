@@ -14,50 +14,33 @@ export default class CardChart extends React.Component {
         datasets: [],
       },
     };
-    this.getData();
-  }
-  
-  getData() {
-    if (this.props.type == 'bloodpressure') {
+
+    if (props.type.en == 'Bloodpressure') {
       db.getData(
         this.props.patientId,
         'diastolic',
         this.onceHandler,
-        this.formatData
+        this.incomingValues
       );
       db.getData(
         this.props.patientId,
         'systolic',
         this.onceHandler,
-        this.formatData
+        this.incomingValues
       );
     } else {
       db.getData(
-        this.props.patientId,
-        this.props.type,
+        props.patientId,
+        props.type.en.toLowerCase(),
         this.onceHandler,
-        this.formatData
+        this.incomingValues
       );
     }
   }
 
-  formatData = res => {
-    if(this.props.type !== 'bloodpressure') {
-      let newDataset = [...this.state.data.datasets[0].data]
-      newDataset.shift();
-      newDataset.push(Number(res.val().data));
-    
-      
-      let stateData = {...this.state.data}
-      stateData.datasets[0] = {data: newDataset};
-      this.setState({
-        data: stateData,
-        loading: false
-      });
-    } else {
-      
-    }
-    
+  incomingValues = res => {
+    // new data in db component should update
+    console.log(res.val());
   };
   onceHandler = res => {
     if (res.val() == null) return;

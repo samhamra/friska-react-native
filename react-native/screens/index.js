@@ -6,8 +6,6 @@ import ChatSelectScreen from './ChatSelectScreen';
 import AddScreen from './AddScreen';
 import OverviewScreen from './OverviewScreen';
 import WeightViewScreen from './WeightViewScreen';
-import BloodPressureViewScreen from './BloodPressureViewScreen';
-import BloodSugarViewScreen from './BloodSugarViewScreen';
 import KetonesViewScreen from './KetonesViewScreen';
 import FeedScreen from './FeedScreen';
 import AddSelectScreen from './AddSelectScreen';
@@ -15,6 +13,7 @@ import DiaryEntryScreen from './DiaryEntryScreen';
 import EnterMeasurementsScreen from './EnterMeasurementsScreen';
 import CalendarScreen from './CalendarScreen';
 import MoreScreen from './MoreScreen';
+import MeasurementScreen from './MeasurementScreen';
 import ProfileScreen from './ProfileScreen';
 import RecipeScreen from './RecipeScreen';
 import LoginScreen from './LoginScreen';
@@ -28,8 +27,6 @@ export {
   ChatSelectScreen,
   OverviewScreen,
   WeightViewScreen,
-  BloodPressureViewScreen,
-  BloodSugarViewScreen,
   KetonesViewScreen,
   FeedScreen,
   AddSelectScreen,
@@ -37,6 +34,7 @@ export {
   EnterMeasurementsScreen,
   CalendarScreen,
   MoreScreen,
+  MeasurementScreen,
   ProfileScreen,
   RecipeScreen,
   LoginScreen,
