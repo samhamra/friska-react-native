@@ -13,7 +13,7 @@ import DiaryEntryScreen from './DiaryEntryScreen';
 import EnterMeasurementsScreen from './EnterMeasurementsScreen';
 import CalendarScreen from './CalendarScreen';
 import MoreScreen from './MoreScreen';
-import MeasurementsScreen from './MeasurementScreen';
+import MeasurementScreen from './MeasurementScreen';
 
 export {
   HomeScreen,
@@ -31,5 +31,5 @@ export {
   EnterMeasurementsScreen,
   CalendarScreen,
   MoreScreen,
-  MeasurementsScreen,
+  MeasurementScreen,
 };

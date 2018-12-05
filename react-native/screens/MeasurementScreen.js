@@ -20,20 +20,25 @@ export default class MeasurementScreen extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.navigation.setParams({
-      title: this.props.title,
-    });
-  }
+  componentDidMount() {}
   handleSubmit = e => {
     console.log(e);
   };
   render() {
+    let span = 'veckan';
+    if (this.state.pickerValue === 'day') {
+      span = 'dagen';
+    } else if (this.state.pickerValue === 'week') {
+      span = 'veckan';
+    } else if (this.state.pickerValue === 'month') {
+      span = 'månaden';
+    }
     return (
       <View style={styles.container}>
+        <Text>Dina [TYPE] den senaste span</Text>
         <CardChart
           patientId={1}
-          type={'bloodsugar'}
+          type={this.props.navigation.getParam('type')}
           height={200}
           width={Dimensions.get('window').width - 30}
         />

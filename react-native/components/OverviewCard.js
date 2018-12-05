@@ -6,15 +6,14 @@ import { CardChart } from '.';
 
 export default class OverviewCard extends React.Component {
   render() {
-    console.log(this.props);
-    let { title } = this.props;
+    let { type, patientId } = this.props;
+
+    let title = type.sv;
     return (
       <TouchableOpacity onPress={this.props.onCardPress}>
         <View style={styles.container}>
           <View style={styles.titleContainer}>
-            <Text style={styles.title}>
-              {title[0].toUpperCase() + title.slice(1)}
-            </Text>
+            <Text style={styles.title}>{title}</Text>
             <Icon.Ionicons
               style={styles.arrow}
               size={25}
@@ -23,8 +22,8 @@ export default class OverviewCard extends React.Component {
           </View>
           <View style={styles.graph}>
             <CardChart
-              patientId={this.props.patientId}
-              type={this.props.title}
+              patientId={patientId}
+              type={type}
               width={250}
               height={150}
             />

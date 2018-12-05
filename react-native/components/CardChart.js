@@ -14,7 +14,8 @@ export default class CardChart extends React.Component {
         datasets: [],
       },
     };
-    if (props.type == 'bloodpressure') {
+
+    if (props.type.en == 'Bloodpressure') {
       db.getData(
         props.patientId,
         'diastolic',
@@ -30,7 +31,7 @@ export default class CardChart extends React.Component {
     } else {
       db.getData(
         props.patientId,
-        props.type,
+        props.type.en.toLowerCase(),
         this.onceHandler,
         this.incomingValues
       );

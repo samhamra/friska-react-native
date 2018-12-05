@@ -23,10 +23,30 @@ import { TabBarIcon } from '../components';
 
 const MeasurementsStack = createStackNavigator({
   Overview: OverviewScreen,
-  WeightView: MeasurementScreen,
-  BloodpressureView: MeasurementScreen,
-  BloodsugarView: MeasurementScreen,
-  KetonsView: MeasurementScreen,
+  WeightView: {
+    screen: MeasurementScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: navigation.state.params.type.sv,
+    }),
+  },
+  BloodpressureView: {
+    screen: MeasurementScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: navigation.state.params.type.sv,
+    }),
+  },
+  BloodsugarView: {
+    screen: MeasurementScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: navigation.state.params.type.sv,
+    }),
+  },
+  KetonsView: {
+    screen: MeasurementScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: navigation.state.params.type.sv,
+    }),
+  },
 });
 
 MeasurementsStack.navigationOptions = {
