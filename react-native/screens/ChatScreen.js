@@ -1,15 +1,18 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
-
+import { View, StyleSheet, Image } from 'react-native';
+import { LIGHT_GREY, DARK_GREY } from '../styles/colors';
 export default class ChatScreen extends React.Component {
   static navigationOptions = {
-    title: 'Chat',
+    title: 'Recept',
   };
 
   render() {
     return (
       <View style={styles.container}>
-        <Text>Chat</Text>
+        <Image
+          style={styles.image}
+          source={require('../assets/mock/Chatt.png')}
+        />
       </View>
     );
   }
@@ -18,9 +21,11 @@ export default class ChatScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 15,
-    paddingLeft: 15,
-    paddingRight: 15,
-    backgroundColor: '#fff',
+  },
+  image: {
+    flex: 1,
+    width: null,
+    height: null,
+    resizeMode: 'cover',
   },
 });

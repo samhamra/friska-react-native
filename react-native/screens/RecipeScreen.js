@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Image } from 'react-native';
 import { LIGHT_GREY, DARK_GREY } from '../styles/colors';
-export default class RecipeScreem extends React.Component {
+export default class RecipeScreen extends React.Component {
   static navigationOptions = {
     title: 'Recept',
   };

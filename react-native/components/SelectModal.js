@@ -11,8 +11,12 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { DARK_GREY } from '../styles/colors';
+import ChatModal from './ChatModal';
 
 export default class SelectModal extends React.Component {
+  state = {
+    chatModalOpen: false,
+  };
   navigate = path => {
     const navigate = this.props.navigate;
     navigate(path);
@@ -26,9 +30,19 @@ export default class SelectModal extends React.Component {
         visible={this.props.isOpen}
         onRequestClose={() => {}}
       >
+        <ChatModal
+          isOpen={this.state.chatModalOpen}
+          close={() => {
+            this.setState({ chatModalOpen: false });
+          }}
+        />
         <View style={styles.container}>
           <View style={styles.button}>
-            <TouchableOpacity onPress={() => this.navigate('Chat')}>
+            <TouchableOpacity
+              onPress={() => {
+                this.setState({ chatModalOpen: true });
+              }}
+            >
               <Text style={styles.buttonText}>
                 Chatta med min personliga sjuksköterska
               </Text>
