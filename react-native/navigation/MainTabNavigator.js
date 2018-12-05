@@ -23,6 +23,7 @@ import {
   EnterMeasurementsScreen,
   CalendarScreen,
   MoreScreen,
+  ProfileScreen,
 } from '../screens';
 import { TabBarIcon } from '../components';
 
@@ -108,6 +109,7 @@ FeedStack.navigationOptions = {
 };
 const MoreStack = createStackNavigator({
   More: MoreScreen,
+  Profile: ProfileScreen,
 });
 MoreStack.navigationOptions = {
   tabBarLabel: 'Mer',

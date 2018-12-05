@@ -15,6 +15,7 @@ import DiaryEntryScreen from './DiaryEntryScreen';
 import EnterMeasurementsScreen from './EnterMeasurementsScreen';
 import CalendarScreen from './CalendarScreen';
 import MoreScreen from './MoreScreen';
+import ProfileScreen from './ProfileScreen';
 
 export {
   HomeScreen,
@@ -34,4 +35,5 @@ export {
   EnterMeasurementsScreen,
   CalendarScreen,
   MoreScreen,
+  ProfileScreen,
 };

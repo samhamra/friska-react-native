@@ -20,7 +20,7 @@ export default class SelectModal extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.button}>
-          <TouchableOpacity onPress={() => navigate('Chat')}>
+          <TouchableOpacity onPress={() => navigate('Profile')}>
             <Text style={styles.buttonText}>Profil</Text>
           </TouchableOpacity>
         </View>
