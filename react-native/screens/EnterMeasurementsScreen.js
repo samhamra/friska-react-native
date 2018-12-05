@@ -48,6 +48,7 @@ export default class EnterMeasurementsScreen extends React.Component {
                 <Text>Övertryck</Text>
                 <View style={[styles.textAreaContainer, styles.spacing]}>
                   <TextInput
+                    keyboardType="numeric"
                     underlineColorAndroid="transparent"
                     value={this.state.systolicpressure}
                     onChangeText={t =>
