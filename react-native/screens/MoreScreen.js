@@ -25,7 +25,7 @@ export default class SelectModal extends React.Component {
           </TouchableOpacity>
         </View>
         <View style={styles.button}>
-          <TouchableOpacity onPress={() => navigate('Chat')}>
+          <TouchableOpacity onPress={() => navigate('Recipe')}>
             <Text style={styles.buttonText}>Recept</Text>
           </TouchableOpacity>
         </View>
