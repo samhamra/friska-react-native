@@ -50,12 +50,12 @@ export default class EnterMeasurementsScreen extends React.Component {
                   <TextInput
                     keyboardType="numeric"
                     underlineColorAndroid="transparent"
-                    value={this.state.systolicpressure}
+                    value={this.state.systolic}
                     onChangeText={t =>
                       this.setState({
                         measurements: {
                           ...this.state.measurements,
-                          systolicpressure: t,
+                          systolic: t,
                         },
                       })}
                     style={styles.input}
@@ -68,12 +68,12 @@ export default class EnterMeasurementsScreen extends React.Component {
                   <TextInput
                     keyboardType="numeric"
                     underlineColorAndroid="transparent"
-                    value={this.state.diastolicpressure}
+                    value={this.state.diastolic}
                     onChangeText={t =>
                       this.setState({
                         measurements: {
                           ...this.state.measurements,
-                          diatolicpressure: t,
+                          diastolic: t,
                         },
                       })}
                     style={styles.input}
@@ -86,10 +86,10 @@ export default class EnterMeasurementsScreen extends React.Component {
               <TextInput
                 keyboardType="numeric"
                 underlineColorAndroid="transparent"
-                value={this.state.ketones}
+                value={this.state.ketons}
                 onChangeText={t =>
                   this.setState({
-                    measurements: { ...this.state.measurements, ketones: t },
+                    measurements: { ...this.state.measurements, ketons: t },
                   })}
                 style={styles.input}
               />
