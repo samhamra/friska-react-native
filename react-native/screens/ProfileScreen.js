@@ -11,7 +11,7 @@ export default class ProfileScreen extends React.Component {
       <View style={styles.container}>
         <Image
           style={styles.image}
-          source={require('../assets/mock/Profil2.png')}
+          source={require('../assets/mock/ProfilNy.png')}
         />
       </View>
     );

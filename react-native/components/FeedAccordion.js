@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Platform,
   Button,
+  Image,
 } from 'react-native';
 import { Constants, Icon } from 'expo';
 import Colors from '../constants/Colors';
@@ -20,34 +21,144 @@ const BACON_IPSUM =
 
 const CONTENT = [
   {
+    title: 'Dagboksinlägg',
+    text: 'Idag har jag känt mig hängig och trött',
+    date: '2018-12-06',
+    content: (
+      <Image
+        style={{ resizeMode: 'contain', height: 300, width: 300 }}
+        source={require('../assets/mock/Chatt.png')}
+      />
+    ),
+  },
+  {
     title: 'Chattmeddelande',
-    date: '2012-10-05',
-    text: 'Tack! Då vet jag vad jag ska tänka på',
-    content: BACON_IPSUM,
+    text:
+      'Hej, jag ska ut och äta med några kollegor och undrar över vad jag bör tänka på när jag beställer på restaurangen så att det passa min behandling',
+    date: '2018-12-05',
+    content: (
+      <Text>
+        <Text style={{ fontWeight: 'bold' }}>Britta</Text>:{' '}
+        {`Hej, jag ska ut och äta med några kollegor och undrar över vad jag bör tänka på när jag beställer på restaurangen så att det passa min behandling
+`}
+        <Text style={{ fontWeight: 'bold' }}>SSK</Text>:{' '}
+        {`Hej
+`}
+        <Text style={{ fontWeight: 'bold' }}>Britta</Text>:{' '}
+        {`tänk på att inte äta mat som innehåller för mycket socker så ska det vara lugnt.
+`}
+        <Text style={{ fontWeight: 'bold' }}>Britta</Text>:{' '}
+        {`Okej, tack då vet jag
+`}
+      </Text>
+    ),
   },
   {
     title: 'Dagboksinlägg',
-    text: 'Tack! Då vet jag vad jag ska tänka på',
-    date: '2012-10-05',
-    content: BACON_IPSUM,
-  },
-  {
-    title: 'Chattmeddelande',
-    text: 'Tack! Då vet jag vad jag ska tänka på',
-    date: '2012-10-05',
-    content: BACON_IPSUM,
-  },
-  {
-    title: 'Chattmeddelande',
-    text: 'Tack! Då vet jag vad jag ska tänka på',
-    date: '2012-10-05',
-    content: BACON_IPSUM,
+    text:
+      'Under eftermiddagen kände jag mig väldigt pigg jämfört med senaste dagarna',
+    date: '2018-12-04',
+    content: (
+      <Image
+        style={{ resizeMode: 'contain', height: 300, width: 300 }}
+        source={require('../assets/mock/Chatt.png')}
+      />
+    ),
   },
   {
     title: 'Dagboksinlägg',
-    text: 'Tack! Då vet jag vad jag ska tänka på',
-    date: '2012-10-05',
-    content: BACON_IPSUM,
+    text: 'Bild på dagens middag',
+    date: '2018-12-03',
+    content: (
+      <Image
+        style={{ resizeMode: 'contain', height: 300, width: 300 }}
+        source={require('../assets/mock/bilder/beef.jpg')}
+      />
+    ),
+  },
+  {
+    title: 'Dagboksinlägg',
+    text: 'Bild på dagens lunch',
+    date: '2018-12-03',
+    content: (
+      <Image
+        style={{ resizeMode: 'contain', height: 300, width: 300 }}
+        source={require('../assets/mock/bilder/lentils.jpg')}
+      />
+    ),
+  },
+  {
+    title: 'Dagboksinlägg',
+    text: 'Bild på dagens middag',
+    date: '2018-12-02',
+    content: (
+      <Image
+        style={{ resizeMode: 'contain', height: 300, width: 300 }}
+        source={require('../assets/mock/bilder/pizza.jpg')}
+      />
+    ),
+  },
+  {
+    title: 'Dagboksinlägg',
+    text: 'Bild på dagens lunch',
+    date: '2018-12-02',
+    content: (
+      <Image
+        style={{ resizeMode: 'contain', height: 300, width: 300 }}
+        source={require('../assets/mock/bilder/noodles.jpg')}
+      />
+    ),
+  },
+  {
+    title: 'Dagboksinlägg',
+    text: 'Bild på dagens middag',
+    date: '2018-12-01',
+    content: (
+      <Image
+        style={{ resizeMode: 'contain', height: 300, width: 300 }}
+        source={require('../assets/mock/bilder/salmon.jpg')}
+      />
+    ),
+  },
+  {
+    title: 'Dagboksinlägg',
+    text: 'Bild på dagens lunch',
+    date: '2018-12-01',
+    content: (
+      <Image
+        style={{ resizeMode: 'contain', height: 300, width: 300 }}
+        source={require('../assets/mock/bilder/pasta.jpg')}
+      />
+    ),
+  },
+  {
+    title: 'Journalanteckning',
+    text: 'Månatlig avstämning med SSK',
+    date: '2018-11-30',
+    content: (
+      <Text>
+        Jag och Britta hade vår månatliga avstämning över telefon idag. Britta
+        har mått bra den senaste månaden och känner att det är givande att få
+        dessa avstämningar. Hennes blodtryck har stadigt gått ner de senaste två
+        veckorna. Men hennes blodsockerkurva har varit ganska mycket upp och
+        ner. Vi bestämde att hon skulle skicka bilder på lunch och middag
+        kommande tre dagarna så att vi kan analysera det mot hennes
+        blodsockernivåer.
+      </Text>
+    ),
+  },
+  {
+    title: 'Chattmeddelande',
+    text:
+      'Hej, är det något speciellt jag bör tänka på inför avstämningen i morgon?',
+    date: '2018-11-29',
+    content: (
+      <Text>
+        Britta: Hej, är det något speciellt jag bör tänka på inför avstämningen
+        i morgon?\n SSK: Hej Britta, nej det är bara att köra på som vanligt\n
+        Britta: Okej, vi hörs i morgon
+      </Text>
+    ),
   },
 ];
 export default class FeedAccordion extends Component {
@@ -103,9 +214,7 @@ export default class FeedAccordion extends Component {
         >
           <View style={styles.line} />
         </View>
-        <View>
-          <Text>{section.content}</Text>
-        </View>
+        <View style={{ paddingLeft: 15 }}>{section.content}</View>
       </View>
     );
   }
