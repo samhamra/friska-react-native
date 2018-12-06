@@ -11,7 +11,7 @@ export default class RecipeScreen extends React.Component {
       <View style={styles.container}>
         <Image
           style={styles.image}
-          source={require('../assets/mock/Recept.png')}
+          source={require('../assets/mock/ReceptNy.png')}
         />
       </View>
     );
