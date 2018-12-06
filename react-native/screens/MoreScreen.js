@@ -30,17 +30,17 @@ export default class SelectModal extends React.Component {
           </TouchableOpacity>
         </View>
         <View style={styles.button}>
-          <TouchableOpacity onPress={() => navigate('Chat')}>
+          <TouchableOpacity onPress={() => navigate('NONE')}>
             <Text style={styles.buttonText}>Forum</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.button}>
-          <TouchableOpacity onPress={() => navigate('Chat')}>
+          <TouchableOpacity onPress={() => navigate('NONE')}>
             <Text style={styles.buttonText}>Inställningar</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.button}>
-          <TouchableOpacity onPress={() => navigate('Chat')}>
+          <TouchableOpacity onPress={() => navigate('Login')}>
             <Text style={styles.buttonText}>Logga ut</Text>
           </TouchableOpacity>
         </View>
@@ -60,8 +60,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     paddingLeft: 25,
     paddingRight: 25,
-    backgroundColor: LIGHT_GREY,
-    marginBottom: 20,
+    backgroundColor: '#fff',
     position: 'relative',
     justifyContent: 'center',
   },
@@ -73,7 +72,6 @@ const styles = StyleSheet.create({
     paddingRight: 15,
   },
   button: {
-    backgroundColor: '#fff',
     padding: 10,
     borderRadius: 10,
     borderStyle: 'solid',
@@ -82,7 +80,6 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   buttonText: {
-    fontSize: 20,
     textAlign: 'center',
   },
 });
