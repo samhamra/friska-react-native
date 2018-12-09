@@ -31,7 +31,13 @@ const MeasurementsStack = createStackNavigator({
       title: navigation.state.params.type.sv,
     }),
   },
-  BloodpressureView: {
+  DiastolicView: {
+    screen: MeasurementScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: navigation.state.params.type.sv,
+    }),
+  },
+  SystolicView: {
     screen: MeasurementScreen,
     navigationOptions: ({ navigation }) => ({
       title: navigation.state.params.type.sv,

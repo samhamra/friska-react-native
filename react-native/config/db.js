@@ -12,18 +12,7 @@ const firebaseConfig = {
 
 var app = firebase.initializeApp(firebaseConfig);
 
-/*
-valueTypes: keton, weight, bloodsugar, bloodpressure
-examples:
-db.getHealthData(1, 'bloodsugar')
-db.setHealthData(1, 'bloodsugar', 1.37)
-*/
 
-/*
-diary
-chat
-
-*/
 function getRndInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }

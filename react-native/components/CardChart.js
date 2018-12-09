@@ -14,23 +14,8 @@ export default class CardChart extends React.Component {
         datasets: [],
       },
       dateSpan: props.dateSpan,
-      bpCount: 0,
     };
 
-    if (props.type.en == 'Bloodpressure') {
-      db.getData(
-        this.props.patientId,
-        'diastolic',
-        this.bpHandler,
-        this.incomingValues
-      );
-      db.getData(
-        this.props.patientId,
-        'systolic',
-        this.bpHandler,
-        this.incomingValues
-      );
-    } else {
       db.getData(
         props.patientId,
         props.type.en.toLowerCase(),
@@ -38,19 +23,28 @@ export default class CardChart extends React.Component {
         this.incomingValues
       );
     }
-  }
+
   getDate = date => {
     var options = { month: '2-digit', day: '2-digit' };
     return date.toLocaleDateString('sv-SE', options);
   };
   incomingValues = res => {
-    if (res.val() == null) return;
-    console.log('incomingValues', JSON.stringify(res.val()));
-    let stateData = { ...this.state.data };
-    let newDataset = [];
-    let newLabels = [];
-    let data = res.val();
-  };
+   // new data in db component should update
+   console.log(res.val());
+     let newDataset = [...this.state.data.datasets[0].data]
+     newDataset.shift();
+     newDataset.push(Number(res.val().data));
+   
+     
+     let stateData = {...this.state.data}
+     stateData.datasets[0] = {data: newDataset};
+     console.log(stateData);
+     this.setState({
+       data: stateData,
+       loading: false
+     });
+   
+ };
   onceHandler = res => {
     if (res.val() == null) return;
     let stateData = { ...this.state.data };
@@ -60,7 +54,6 @@ export default class CardChart extends React.Component {
 
     Object.keys(data).forEach(key => {
       newDataset.push(Number(data[key].data));
-
       newLabels.push(this.getDate(new Date(data[key].timestamp)));
     });
     stateData.labels = newLabels.slice(newLabels.length - 7, newLabels.length);
@@ -72,38 +65,10 @@ export default class CardChart extends React.Component {
       loading: false,
     });
   };
-  bpHandler = res => {
-    if (res.val() == null) return;
-    this.setState({ bpCount: this.state.bpCount + 1 });
-    let stateData = { ...this.state.data };
-    let newDataset = [];
-    let newLabels = [];
-    let data = res.val();
 
-    Object.keys(data).forEach(key => {
-      newDataset.push(Number(data[key].data));
-      newLabels.push(this.getDate(new Date(data[key].timestamp)));
-    });
-    stateData.labels = newLabels.slice(newLabels.length - 7, newLabels.length);
-    stateData.datasets.push({
-      data: newDataset.slice(newDataset.length - 7, newDataset.length),
-    });
-    console.log(this.state.bpCount);
-    if (this.state.bpCount > 1) {
-      this.setState(
-        {
-          data: stateData,
-          loading: false,
-        },
-        () => {
-          console.log(this.state);
-        }
-      );
-    }
-  };
   getColor = (type, opacity) => {
     switch (type) {
-      case 'Bloodpressure':
+      case 'Diastolic':
         return `rgba(204, 0, 0, ${opacity})`;
       case 'Bloodsugar':
         return `rgba(87, 193, 0, ${opacity})`;
@@ -116,9 +81,7 @@ export default class CardChart extends React.Component {
     }
   };
   render() {
-    if (this.props.type.en === 'Bloodpressure') {
-      console.log(JSON.stringify(this.state.data));
-    }
+    const component = this;
 
     let { width, height, type } = this.props;
 
@@ -134,10 +97,10 @@ export default class CardChart extends React.Component {
       ],
       datasets: [
         {
-          data: [20, 45, 28, 80, 99, 43],
+          data: [10, 20, 30, 40, 50, 60, 70],
         },
         {
-          data: [20, 45, 28, 80, 99, 43].reverse(),
+          data: [140, 130, 120, 110, 100, 100, 90]
         },
       ],
     };

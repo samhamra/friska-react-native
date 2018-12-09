@@ -12,8 +12,9 @@ export default class OverviewScreen extends React.Component {
     var types = [
       { en: 'Bloodsugar', sv: 'Blodsocker' },
       { en: 'Ketons', sv: 'Ketoner' },
-      { en: 'Bloodpressure', sv: 'Blodtryck' },
       { en: 'Weight', sv: 'Vikt' },
+      { en: 'Systolic', sv: 'Blodtryck(över)' },
+      { en: 'Diastolic', sv: 'Blodtryck(under)' }
     ];
 
     const { navigate } = this.props.navigation;
