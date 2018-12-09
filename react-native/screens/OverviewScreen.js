@@ -10,10 +10,10 @@ export default class OverviewScreen extends React.Component {
 
   render() {
     var types = [
-      { en: 'Weight', sv: 'Vikt' },
-      { en: 'Ketons', sv: 'Ketoner' },
       { en: 'Bloodsugar', sv: 'Blodsocker' },
+      { en: 'Ketons', sv: 'Ketoner' },
       { en: 'Bloodpressure', sv: 'Blodtryck' },
+      { en: 'Weight', sv: 'Vikt' },
     ];
 
     const { navigate } = this.props.navigation;

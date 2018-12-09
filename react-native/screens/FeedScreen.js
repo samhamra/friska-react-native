@@ -82,16 +82,19 @@ const CONTENT = [
     title: 'Journalantecknig',
     text: 'Månatlig avstämning med SSK',
     date: '2018-11-30',
-    content:
-      'Jag och Britta hade vår månatliga avstämning över telefon idag. Britta har mått bra den senaste månaden och känner att det är givande att få dessa avstämningar. Hennes blodtryck har stadigt gått ner de senaste två veckorna. Men hennes blodsockerkurva har varit ganska mycket upp och ner. Vi bestämde att hon skulle skicka bilder på lunch och middag kommande tre dagarna så att vi kan analysera det mot hennes blodsockernivåer.',
+    content: `Jag och Britta hade vår månatliga avstämning över telefon idag. 
+      Britta har mått bra den senaste månaden och känner att det är givande att få dessa avstämningar. 
+      Hennes blodtryck har stadigt gått ner de senaste två veckorna. Men hennes blodsockerkurva har varit ganska mycket upp och ner. 
+      Vi bestämde att hon skulle skicka bilder på lunch och middag kommande tre dagarna så att vi kan analysera det mot hennes blodsockernivåer.`,
   },
   {
     title: 'Chattmeddelande',
     text:
       'Hej, är det något speciellt jag bör tänka på inför avstämningen i morgon?',
     date: '2018-11-29',
-    content:
-      'Britta: Hej, är det något speciellt jag bör tänka på inför avstämningen i morgon?\n SSK: Hej Britta, nej det är bara att köra på som vanligt\n Britta: Okej, vi hörs i morgon',
+    content: `Britta: Hej, är det något speciellt jag bör tänka på inför avstämningen i morgon?
+      SSK: Hej Britta, nej det är bara att köra på som vanligt
+      Britta: Okej, vi hörs i morgon`,
   },
 ];
 

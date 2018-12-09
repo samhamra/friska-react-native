@@ -13,19 +13,21 @@ export default class CardChart extends React.Component {
         labels: [],
         datasets: [],
       },
+      dateSpan: props.dateSpan,
+      bpCount: 0,
     };
 
     if (props.type.en == 'Bloodpressure') {
       db.getData(
         this.props.patientId,
         'diastolic',
-        this.onceHandler,
+        this.bpHandler,
         this.incomingValues
       );
       db.getData(
         this.props.patientId,
         'systolic',
-        this.onceHandler,
+        this.bpHandler,
         this.incomingValues
       );
     } else {
@@ -37,10 +39,17 @@ export default class CardChart extends React.Component {
       );
     }
   }
-
+  getDate = date => {
+    var options = { month: '2-digit', day: '2-digit' };
+    return date.toLocaleDateString('sv-SE', options);
+  };
   incomingValues = res => {
-    // new data in db component should update
-    console.log(res.val());
+    if (res.val() == null) return;
+    console.log('incomingValues', JSON.stringify(res.val()));
+    let stateData = { ...this.state.data };
+    let newDataset = [];
+    let newLabels = [];
+    let data = res.val();
   };
   onceHandler = res => {
     if (res.val() == null) return;
@@ -48,23 +57,13 @@ export default class CardChart extends React.Component {
     let newDataset = [];
     let newLabels = [];
     let data = res.val();
+
     Object.keys(data).forEach(key => {
       newDataset.push(Number(data[key].data));
-      newLabels.push(new Date(data[key].timestamp).getDay());
+
+      newLabels.push(this.getDate(new Date(data[key].timestamp)));
     });
-
-    // Remove slice if we do week/month/day getters
-    stateData.labels = [
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday',
-      'Sunday',
-    ];
-    //stateData.labels = newLabels.slice(0, 7);
-
+    stateData.labels = newLabels.slice(newLabels.length - 7, newLabels.length);
     stateData.datasets.push({
       data: newDataset.slice(newDataset.length - 7, newDataset.length),
     });
@@ -72,6 +71,35 @@ export default class CardChart extends React.Component {
       data: stateData,
       loading: false,
     });
+  };
+  bpHandler = res => {
+    if (res.val() == null) return;
+    this.setState({ bpCount: this.state.bpCount + 1 });
+    let stateData = { ...this.state.data };
+    let newDataset = [];
+    let newLabels = [];
+    let data = res.val();
+
+    Object.keys(data).forEach(key => {
+      newDataset.push(Number(data[key].data));
+      newLabels.push(this.getDate(new Date(data[key].timestamp)));
+    });
+    stateData.labels = newLabels.slice(newLabels.length - 7, newLabels.length);
+    stateData.datasets.push({
+      data: newDataset.slice(newDataset.length - 7, newDataset.length),
+    });
+    console.log(this.state.bpCount);
+    if (this.state.bpCount > 1) {
+      this.setState(
+        {
+          data: stateData,
+          loading: false,
+        },
+        () => {
+          console.log(this.state);
+        }
+      );
+    }
   };
   getColor = (type, opacity) => {
     switch (type) {
@@ -88,8 +116,7 @@ export default class CardChart extends React.Component {
     }
   };
   render() {
-    const component = this;
-    if (this.props.type === 'bloodpressure') {
+    if (this.props.type.en === 'Bloodpressure') {
       console.log(JSON.stringify(this.state.data));
     }
 

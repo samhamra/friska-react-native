@@ -10,19 +10,23 @@ import {
 } from 'react-native';
 import { CardChart } from '../components';
 import { LIGHT_GREY, DARK_GREY } from '../styles/colors';
+import { db } from '../config';
 
 export default class MeasurementScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       pickerValue: 'week',
-      bloodsugar: '',
+      inputValue: '',
     };
   }
 
   componentDidMount() {}
   handleSubmit = e => {
-    console.log(e);
+    let type = this.props.navigation.getParam('type').en.toLowerCase();
+    db.setData(1, type, this.state.inputValue, () => {
+      this.setState({ inputValue: '' });
+    });
   };
   render() {
     let type = this.props.navigation.getParam('type');
@@ -44,14 +48,15 @@ export default class MeasurementScreen extends React.Component {
           type={type}
           height={200}
           width={Dimensions.get('window').width - 30}
+          dateSpan={this.state.pickerValue}
         />
         <View style={styles.settingsContainer}>
           <View style={styles.inputContainer}>
             <TextInput
               underlineColorAndroid="transparent"
-              placeholder="Nytt blodsocker"
-              value={this.state.bloodsugar}
-              onChangeText={t => this.setState({ bloodsugar: t.target.value })}
+              placeholder={'Nytt ' + type.sv}
+              value={this.state.inputValue}
+              onChangeText={t => this.setState({ inputValue: t })}
               style={styles.input}
             />
             <Button
@@ -68,9 +73,9 @@ export default class MeasurementScreen extends React.Component {
                 this.setState({ pickerValue: itemValue })
               }
             >
-              <Picker.Item label="Day" value="day" />
-              <Picker.Item label="Week" value="week" />
-              <Picker.Item label="Month" value="month" />
+              <Picker.Item label="Dag" value="day" />
+              <Picker.Item label="Vecka" value="week" />
+              <Picker.Item label="Månad" value="month" />
             </Picker>
           </View>
         </View>
@@ -103,6 +108,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     padding: 5,
     borderRadius: 3,
+    width: '100%',
   },
   pickerContainer: {
     marginTop: -20,
