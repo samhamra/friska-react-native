@@ -16,35 +16,33 @@ export default class CardChart extends React.Component {
       dateSpan: props.dateSpan,
     };
 
-      db.getData(
-        props.patientId,
-        props.type.en.toLowerCase(),
-        this.onceHandler,
-        this.incomingValues
-      );
-    }
+    db.getData(
+      props.patientId,
+      props.type.en.toLowerCase(),
+      this.onceHandler,
+      this.incomingValues
+    );
+  }
 
   getDate = date => {
     var options = { month: '2-digit', day: '2-digit' };
     return date.toLocaleDateString('sv-SE', options);
   };
   incomingValues = res => {
-   // new data in db component should update
-   console.log(res.val());
-     let newDataset = [...this.state.data.datasets[0].data]
-     newDataset.shift();
-     newDataset.push(Number(res.val().data));
-   
-     
-     let stateData = {...this.state.data}
-     stateData.datasets[0] = {data: newDataset};
-     console.log(stateData);
-     this.setState({
-       data: stateData,
-       loading: false
-     });
-   
- };
+    // new data in db component should update
+    console.log(res.val());
+    let newDataset = [...this.state.data.datasets[0].data];
+    newDataset.shift();
+    newDataset.push(Number(res.val().data));
+
+    let stateData = { ...this.state.data };
+    stateData.datasets[0] = { data: newDataset };
+    console.log(stateData);
+    this.setState({
+      data: stateData,
+      loading: false,
+    });
+  };
   onceHandler = res => {
     if (res.val() == null) return;
     let stateData = { ...this.state.data };
@@ -77,12 +75,10 @@ export default class CardChart extends React.Component {
       case 'Ketons':
         return `rgba(3, 0, 206, ${opacity})`;
       default:
-        return `rgba(44, 249, 222, ${opacity})`;
+        return `rgba(120, 6, 196, ${opacity})`;
     }
   };
   render() {
-    const component = this;
-
     let { width, height, type } = this.props;
 
     const alternativeData = {
@@ -100,7 +96,7 @@ export default class CardChart extends React.Component {
           data: [10, 20, 30, 40, 50, 60, 70],
         },
         {
-          data: [140, 130, 120, 110, 100, 100, 90]
+          data: [140, 130, 120, 110, 100, 100, 90],
         },
       ],
     };
