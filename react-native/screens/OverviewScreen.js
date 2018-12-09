@@ -10,9 +10,9 @@ export default class OverviewScreen extends React.Component {
 
   render() {
     var types = [
-      { en: 'Weight', sv: 'Vikt' },
-      { en: 'Ketons', sv: 'Ketoner' },
       { en: 'Bloodsugar', sv: 'Blodsocker' },
+      { en: 'Ketons', sv: 'Ketoner' },
+      { en: 'Weight', sv: 'Vikt' },
       { en: 'Systolic', sv: 'Blodtryck(över)' },
       { en: 'Diastolic', sv: 'Blodtryck(under)' }
     ];

@@ -13,8 +13,8 @@ export default class CardChart extends React.Component {
         labels: [],
         datasets: [],
       },
+      dateSpan: props.dateSpan,
     };
-
 
       db.getData(
         props.patientId,
@@ -23,8 +23,11 @@ export default class CardChart extends React.Component {
         this.incomingValues
       );
     }
-  
 
+  getDate = date => {
+    var options = { month: '2-digit', day: '2-digit' };
+    return date.toLocaleDateString('sv-SE', options);
+  };
   incomingValues = res => {
    // new data in db component should update
    console.log(res.val());
@@ -48,23 +51,12 @@ export default class CardChart extends React.Component {
     let newDataset = [];
     let newLabels = [];
     let data = res.val();
+
     Object.keys(data).forEach(key => {
       newDataset.push(Number(data[key].data));
-      newLabels.push(new Date(data[key].timestamp).getDay());
+      newLabels.push(this.getDate(new Date(data[key].timestamp)));
     });
-
-    // Remove slice if we do week/month/day getters
-    stateData.labels = [
-      'Mon',
-      'Tue',
-      'Wed',
-      'Thu',
-      'Fri',
-      'Sat',
-      'Sun',
-    ];
-    //stateData.labels = newLabels.slice(0, 7);
-
+    stateData.labels = newLabels.slice(newLabels.length - 7, newLabels.length);
     stateData.datasets.push({
       data: newDataset.slice(newDataset.length - 7, newDataset.length),
     });
@@ -73,6 +65,7 @@ export default class CardChart extends React.Component {
       loading: false,
     });
   };
+
   getColor = (type, opacity) => {
     switch (type) {
       case 'Diastolic':
@@ -89,6 +82,7 @@ export default class CardChart extends React.Component {
   };
   render() {
     const component = this;
+
     let { width, height, type } = this.props;
 
     const alternativeData = {

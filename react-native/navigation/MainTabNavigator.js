@@ -64,13 +64,12 @@ MeasurementsStack.navigationOptions = {
       focused={focused}
       name={
         Platform.OS === 'ios'
-          ? `ios-home${focused ? '' : '-outline'}`
-          : 'md-home'
+          ? `ios-heart${focused ? '' : '-outline'}`
+          : 'fa-heartbeat'
       }
     />
   ),
 };
-
 const CalendarStack = createStackNavigator({
   Calendar: CalendarScreen,
 });

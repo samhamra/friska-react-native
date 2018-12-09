@@ -33,6 +33,7 @@ export default class OverviewCard extends React.Component {
               type={type}
               width={Dimensions.get('window').width - 50}
               height={200}
+              dateSpan={'week'}
             />
           </View>
         </View>

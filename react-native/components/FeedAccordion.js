@@ -15,6 +15,7 @@ import Colors from '../constants/Colors';
 import Collapsible from 'react-native-collapsible';
 import Accordion from 'react-native-collapsible/Accordion';
 import { LIGHT_GREY, DARK_GREY } from '../styles/colors';
+import { CardChart } from '.';
 
 const BACON_IPSUM =
   'Bacon ipsum dolor amet chuck turducken landjaeger tongue spare ribs. Picanha beef prosciutto meatball turkey shoulder shank salami cupim doner jowl pork belly cow. Chicken shankle rump swine tail frankfurter meatloaf ground round flank ham hock tongue shank andouille boudin brisket. ';
@@ -26,8 +27,8 @@ const CONTENT = [
     date: '2018-12-06',
     content: (
       <Image
-        style={{ resizeMode: 'contain', height: 300, width: 300 }}
-        source={require('../assets/mock/Chatt2.png')}
+        style={{ resizeMode: 'contain', height: 200, width: 300 }}
+        source={require('../assets/mock/Chatt.png')}
       />
     ),
   },
@@ -39,17 +40,13 @@ const CONTENT = [
     content: (
       <Text>
         <Text style={{ fontWeight: 'bold' }}>Britta</Text>:{' '}
-        {`Hej, jag ska ut och äta med några kollegor och undrar över vad jag bör tänka på när jag beställer på restaurangen så att det passa min behandling
-`}
-        <Text style={{ fontWeight: 'bold' }}>SSK</Text>:{' '}
-        {`Hej
-`}
+        {`Hej, jag ska ut och äta med några kollegor och undrar över vad jag bör tänka på när jag beställer på restaurangen så att det passa min behandling`}
+        {'\n'}
+        <Text style={{ fontWeight: 'bold' }}>SSK</Text>: {`Hej`}
+        {` tänk på att inte äta mat som innehåller för mycket socker så ska det vara lugnt.`}
+        {'\n'}
         <Text style={{ fontWeight: 'bold' }}>Britta</Text>:{' '}
-        {`tänk på att inte äta mat som innehåller för mycket socker så ska det vara lugnt.
-`}
-        <Text style={{ fontWeight: 'bold' }}>Britta</Text>:{' '}
-        {`Okej, tack då vet jag
-`}
+        {`Okej, tack då vet jag`}
       </Text>
     ),
   },
@@ -60,8 +57,8 @@ const CONTENT = [
     date: '2018-12-04',
     content: (
       <Image
-        style={{ resizeMode: 'contain', height: 300, width: 300 }}
-        source={require('../assets/mock/Chatt2.png')}
+        style={{ resizeMode: 'contain', height: 200, width: 300 }}
+        source={require('../assets/mock/Chatt.png')}
       />
     ),
   },
@@ -71,7 +68,7 @@ const CONTENT = [
     date: '2018-12-03',
     content: (
       <Image
-        style={{ resizeMode: 'contain', height: 300, width: 300 }}
+        style={{ resizeMode: 'contain', height: 200, width: 300 }}
         source={require('../assets/mock/bilder/beef.jpg')}
       />
     ),
@@ -82,7 +79,7 @@ const CONTENT = [
     date: '2018-12-03',
     content: (
       <Image
-        style={{ resizeMode: 'contain', height: 300, width: 300 }}
+        style={{ resizeMode: 'contain', height: 200, width: 300 }}
         source={require('../assets/mock/bilder/lentils.jpg')}
       />
     ),
@@ -93,7 +90,7 @@ const CONTENT = [
     date: '2018-12-02',
     content: (
       <Image
-        style={{ resizeMode: 'contain', height: 300, width: 300 }}
+        style={{ resizeMode: 'contain', height: 200, width: 300 }}
         source={require('../assets/mock/bilder/pizza.jpg')}
       />
     ),
@@ -104,7 +101,7 @@ const CONTENT = [
     date: '2018-12-02',
     content: (
       <Image
-        style={{ resizeMode: 'contain', height: 300, width: 300 }}
+        style={{ resizeMode: 'contain', height: 200, width: 300 }}
         source={require('../assets/mock/bilder/noodles.jpg')}
       />
     ),
@@ -115,7 +112,7 @@ const CONTENT = [
     date: '2018-12-01',
     content: (
       <Image
-        style={{ resizeMode: 'contain', height: 300, width: 300 }}
+        style={{ resizeMode: 'contain', height: 200, width: 300 }}
         source={require('../assets/mock/bilder/salmon.jpg')}
       />
     ),
@@ -126,7 +123,7 @@ const CONTENT = [
     date: '2018-12-01',
     content: (
       <Image
-        style={{ resizeMode: 'contain', height: 300, width: 300 }}
+        style={{ resizeMode: 'contain', height: 200, width: 300 }}
         source={require('../assets/mock/bilder/pasta.jpg')}
       />
     ),
@@ -155,8 +152,9 @@ const CONTENT = [
     content: (
       <Text>
         Britta: Hej, är det något speciellt jag bör tänka på inför avstämningen
-        i morgon?\n SSK: Hej Britta, nej det är bara att köra på som vanligt\n
-        Britta: Okej, vi hörs i morgon
+        i morgon?{'\n'}
+        SSK: Hej Britta, nej det är bara att köra på som vanligt.{'\n'}
+        Britta: Okej, vi hörs i morgon.
       </Text>
     ),
   },
@@ -214,7 +212,31 @@ export default class FeedAccordion extends Component {
         >
           <View style={styles.line} />
         </View>
-        <View style={{ paddingLeft: 15 }}>{section.content}</View>
+        <View
+          style={{ paddingLeft: 15, flexDirection: 'row', flexWrap: 'wrap' }}
+        >
+          <View style={{ flexGrow: 1, flexShrink: 0, flexBasis: '50%' }}>
+            <Text>Blodsocker</Text>
+            <CardChart
+              patientId={1}
+              type={{ en: 'Bloodsugar', sv: 'Blodsocker' }}
+              height={100}
+              width={150}
+              dateSpan={'week'}
+            />
+          </View>
+          <View style={{ flexGrow: 1, flexShrink: 0, flexBasis: '50%' }}>
+            <Text>Ketoner</Text>
+            <CardChart
+              patientId={1}
+              type={{ en: 'Ketons', sv: 'Ketoner' }}
+              height={100}
+              width={150}
+              dateSpan={'week'}
+            />
+          </View>
+          <View style={{ flexBasis: '100%' }}>{section.content}</View>
+        </View>
       </View>
     );
   }
@@ -295,5 +317,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#bbb',
     position: 'absolute',
     left: 5.5,
+  },
+  miniChart: {
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
 });
