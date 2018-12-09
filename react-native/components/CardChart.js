@@ -15,20 +15,7 @@ export default class CardChart extends React.Component {
       },
     };
 
-    if (props.type.en == 'Bloodpressure') {
-      db.getData(
-        this.props.patientId,
-        'diastolic',
-        this.onceHandler,
-        this.incomingValues
-      );
-      db.getData(
-        this.props.patientId,
-        'systolic',
-        this.onceHandler,
-        this.incomingValues
-      );
-    } else {
+
       db.getData(
         props.patientId,
         props.type.en.toLowerCase(),
@@ -36,12 +23,25 @@ export default class CardChart extends React.Component {
         this.incomingValues
       );
     }
-  }
+  
 
   incomingValues = res => {
-    // new data in db component should update
-    console.log(res.val());
-  };
+   // new data in db component should update
+   console.log(res.val());
+     let newDataset = [...this.state.data.datasets[0].data]
+     newDataset.shift();
+     newDataset.push(Number(res.val().data));
+   
+     
+     let stateData = {...this.state.data}
+     stateData.datasets[0] = {data: newDataset};
+     console.log(stateData);
+     this.setState({
+       data: stateData,
+       loading: false
+     });
+   
+ };
   onceHandler = res => {
     if (res.val() == null) return;
     let stateData = { ...this.state.data };
@@ -55,13 +55,13 @@ export default class CardChart extends React.Component {
 
     // Remove slice if we do week/month/day getters
     stateData.labels = [
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday',
-      'Sunday',
+      'Mon',
+      'Tue',
+      'Wed',
+      'Thu',
+      'Fri',
+      'Sat',
+      'Sun',
     ];
     //stateData.labels = newLabels.slice(0, 7);
 
@@ -75,7 +75,7 @@ export default class CardChart extends React.Component {
   };
   getColor = (type, opacity) => {
     switch (type) {
-      case 'Bloodpressure':
+      case 'Diastolic':
         return `rgba(204, 0, 0, ${opacity})`;
       case 'Bloodsugar':
         return `rgba(87, 193, 0, ${opacity})`;
@@ -89,10 +89,6 @@ export default class CardChart extends React.Component {
   };
   render() {
     const component = this;
-    if (this.props.type === 'bloodpressure') {
-      console.log(JSON.stringify(this.state.data));
-    }
-
     let { width, height, type } = this.props;
 
     const alternativeData = {
@@ -107,10 +103,10 @@ export default class CardChart extends React.Component {
       ],
       datasets: [
         {
-          data: [20, 45, 28, 80, 99, 43],
+          data: [10, 20, 30, 40, 50, 60, 70],
         },
         {
-          data: [20, 45, 28, 80, 99, 43].reverse(),
+          data: [140, 130, 120, 110, 100, 100, 90]
         },
       ],
     };

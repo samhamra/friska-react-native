@@ -13,7 +13,8 @@ export default class OverviewScreen extends React.Component {
       { en: 'Weight', sv: 'Vikt' },
       { en: 'Ketons', sv: 'Ketoner' },
       { en: 'Bloodsugar', sv: 'Blodsocker' },
-      { en: 'Bloodpressure', sv: 'Blodtryck' },
+      { en: 'Systolic', sv: 'Blodtryck(över)' },
+      { en: 'Diastolic', sv: 'Blodtryck(under)' }
     ];
 
     const { navigate } = this.props.navigation;
