@@ -28,7 +28,7 @@ const CONTENT = [
     content: (
       <Image
         style={{ resizeMode: 'contain', height: 200, width: 300 }}
-        source={require('../assets/mock/Chatt.png')}
+        source={require('../assets/mock/Chatt2.png')}
       />
     ),
   },
@@ -58,7 +58,7 @@ const CONTENT = [
     content: (
       <Image
         style={{ resizeMode: 'contain', height: 200, width: 300 }}
-        source={require('../assets/mock/Chatt.png')}
+        source={require('../assets/mock/Chatt2.png')}
       />
     ),
   },
