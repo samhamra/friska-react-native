@@ -6,7 +6,6 @@ import {
   createDrawerNavigator,
 } from 'react-navigation';
 import {
-  ChatScreen,
   AddScreen,
   ChatSelectScreen,
   OverviewScreen,
@@ -106,7 +105,6 @@ const FeedStack = createStackNavigator({
   Feed: FeedScreen,
   Select: AddSelectScreen,
   Diary: DiaryEntryScreen,
-  Chat: ChatScreen,
   EnterMeasurements: EnterMeasurementsScreen,
 });
 
