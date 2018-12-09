@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, StyleSheet, Image } from 'react-native';
 import { LIGHT_GREY, DARK_GREY } from '../styles/colors';
-export default class ChatScreen extends React.Component {
+export default class EducationScreen extends React.Component {
   static navigationOptions = {
-    title: 'Recept',
+    title: 'Utbildning',
   };
 
   render() {
@@ -11,7 +11,7 @@ export default class ChatScreen extends React.Component {
       <View style={styles.container}>
         <Image
           style={styles.image}
-          source={require('../assets/mock/Chatt.png')}
+          source={require('../assets/mock/Utbildning1.png')}
         />
       </View>
     );

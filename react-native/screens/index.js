@@ -1,7 +1,6 @@
 import HomeScreen from './HomeScreen';
 import LinksScreen from './LinksScreen';
 import SettingsScreen from './SettingsScreen';
-import ChatScreen from './ChatScreen';
 import ChatSelectScreen from './ChatSelectScreen';
 import AddScreen from './AddScreen';
 import OverviewScreen from './OverviewScreen';
@@ -17,12 +16,12 @@ import MeasurementScreen from './MeasurementScreen';
 import ProfileScreen from './ProfileScreen';
 import RecipeScreen from './RecipeScreen';
 import LoginScreen from './LoginScreen';
+import EducationScreen from './EducationScreen';
 
 export {
   HomeScreen,
   LinksScreen,
   SettingsScreen,
-  ChatScreen,
   AddScreen,
   ChatSelectScreen,
   OverviewScreen,
@@ -38,4 +37,5 @@ export {
   ProfileScreen,
   RecipeScreen,
   LoginScreen,
+  EducationScreen,
 };

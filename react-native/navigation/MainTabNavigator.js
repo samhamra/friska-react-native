@@ -6,7 +6,6 @@ import {
   createDrawerNavigator,
 } from 'react-navigation';
 import {
-  ChatScreen,
   AddScreen,
   ChatSelectScreen,
   OverviewScreen,
@@ -19,6 +18,7 @@ import {
   MeasurementScreen,
   ProfileScreen,
   RecipeScreen,
+  EducationScreen,
 } from '../screens';
 
 import { TabBarIcon } from '../components';
@@ -82,20 +82,19 @@ CalendarStack.navigationOptions = {
   ),
 };
 
-const ChatStack = createStackNavigator({
-  Select: ChatSelectScreen,
-  Chat: ChatScreen,
+const EducationStack = createStackNavigator({
+  Education: EducationScreen,
 });
 
-ChatStack.navigationOptions = {
-  tabBarLabel: 'Chat',
+EducationStack.navigationOptions = {
+  tabBarLabel: 'Education',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
       name={
         Platform.OS === 'ios'
-          ? `ios-chatbubbles${focused ? '' : '-outline'}`
-          : 'md-chatbubbles'
+          ? `ios-bulb${focused ? '' : '-outline'}`
+          : 'md-bulb'
       }
     />
   ),
@@ -105,7 +104,6 @@ const FeedStack = createStackNavigator({
   Feed: FeedScreen,
   Select: AddSelectScreen,
   Diary: DiaryEntryScreen,
-  Chat: ChatScreen,
   EnterMeasurements: EnterMeasurementsScreen,
 });
 
@@ -144,6 +142,7 @@ MoreStack.navigationOptions = {
 const MainTabNavigator = createBottomTabNavigator({
   CalendarStack,
   MeasurementsStack,
+  EducationStack,
   FeedStack,
   MoreStack,
 });
