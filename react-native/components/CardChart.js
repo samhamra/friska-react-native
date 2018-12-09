@@ -52,8 +52,7 @@ export default class CardChart extends React.Component {
       newDataset.push(Number(data[key].data));
       newLabels.push(new Date(data[key].timestamp).getDay());
     });
-    
-    
+
     // Remove slice if we do week/month/day getters
     stateData.labels = [
       'Monday',
@@ -65,20 +64,37 @@ export default class CardChart extends React.Component {
       'Sunday',
     ];
     //stateData.labels = newLabels.slice(0, 7);
-    
-    stateData.datasets.push({ data: newDataset.slice(newDataset.length-7, newDataset.length) });
+
+    stateData.datasets.push({
+      data: newDataset.slice(newDataset.length - 7, newDataset.length),
+    });
     this.setState({
       data: stateData,
       loading: false,
     });
   };
-
+  getColor = (type, opacity) => {
+    switch (type) {
+      case 'Bloodpressure':
+        return `rgba(204, 0, 0, ${opacity})`;
+      case 'Bloodsugar':
+        return `rgba(87, 193, 0, ${opacity})`;
+      case 'Weight':
+        return `rgb(190, 146, 0, ${opacity})`;
+      case 'Ketons':
+        return `rgba(3, 0, 206, ${opacity})`;
+      default:
+        return `rgba(44, 249, 222, ${opacity})`;
+    }
+  };
   render() {
-    if(this.props.type === 'bloodpressure') {
+    const component = this;
+    if (this.props.type === 'bloodpressure') {
       console.log(JSON.stringify(this.state.data));
     }
-    
+
     let { width, height, type } = this.props;
+
     const alternativeData = {
       labels: [
         'Monday',
@@ -99,9 +115,9 @@ export default class CardChart extends React.Component {
       ],
     };
     const chartConfig = {
-      backgroundGradientFrom: '#213330',
-      backgroundGradientTo: '#08130D',
-      color: (opacity = 1) => `rgba(44, 249, 222, ${opacity})`,
+      backgroundGradientFrom: '#fff',
+      backgroundGradientTo: '#fff',
+      color: (opacity = 1) => this.getColor(type.en, opacity),
     };
 
     let chart = this.state.loading ? (

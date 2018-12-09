@@ -1,6 +1,13 @@
 import React from 'react';
 import { Icon } from 'expo';
-import { View, StyleSheet, Text, Button, TouchableOpacity } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  Button,
+  TouchableOpacity,
+  Dimensions,
+} from 'react-native';
 import PropTypes from 'prop-types';
 import { CardChart } from '.';
 
@@ -20,12 +27,12 @@ export default class OverviewCard extends React.Component {
               name={'ios-arrow-forward'}
             />
           </View>
-          <View style={styles.graph}>
+          <View style={styles.graphContainer}>
             <CardChart
               patientId={patientId}
               type={type}
-              width={250}
-              height={150}
+              width={Dimensions.get('window').width - 50}
+              height={200}
             />
           </View>
         </View>
@@ -41,18 +48,18 @@ OverviewCard.propTypes = {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
-    padding: 10,
+    padding: 15,
     backgroundColor: '#FFFFFF',
     marginBottom: 20,
+    height: 260,
   },
   titleContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  graph: {
-    height: 100,
-    justifyContent: 'center',
-    alignItems: 'center',
+  graphContainer: {
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
   },
   arrow: {
     padding: 3,
