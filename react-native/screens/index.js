@@ -17,6 +17,7 @@ import MeasurementScreen from './MeasurementScreen';
 import ProfileScreen from './ProfileScreen';
 import RecipeScreen from './RecipeScreen';
 import LoginScreen from './LoginScreen';
+import EducationScreen from './EducationScreen';
 
 export {
   HomeScreen,
@@ -38,4 +39,5 @@ export {
   ProfileScreen,
   RecipeScreen,
   LoginScreen,
+  EducationScreen,
 };
