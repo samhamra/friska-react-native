@@ -272,11 +272,10 @@ const styles = StyleSheet.create({
     color: DARK_GREY,
   },
   header: {
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#fff',
     paddingRight: 40,
     flexDirection: 'row',
     position: 'relative',
-    borderRadius: 10,
   },
   headerText: {
     textAlign: 'left',
