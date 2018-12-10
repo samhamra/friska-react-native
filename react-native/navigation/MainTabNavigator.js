@@ -148,8 +148,8 @@ MoreStack.navigationOptions = {
 const MainTabNavigator = createBottomTabNavigator({
   CalendarStack,
   MeasurementsStack,
-  EducationStack,
   FeedStack,
+  EducationStack,
   MoreStack,
 });
 export default MainTabNavigator;
