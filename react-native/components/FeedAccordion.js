@@ -25,12 +25,6 @@ const CONTENT = [
     title: 'Dagboksinlägg',
     text: 'Idag har jag känt mig hängig och trött',
     date: '2018-12-06',
-    content: (
-      <Image
-        style={{ resizeMode: 'contain', height: 200, width: 300 }}
-        source={require('../assets/mock/Chatt2.png')}
-      />
-    ),
   },
   {
     title: 'Chattmeddelande',
@@ -55,12 +49,6 @@ const CONTENT = [
     text:
       'Under eftermiddagen kände jag mig väldigt pigg jämfört med senaste dagarna',
     date: '2018-12-04',
-    content: (
-      <Image
-        style={{ resizeMode: 'contain', height: 200, width: 300 }}
-        source={require('../assets/mock/Chatt2.png')}
-      />
-    ),
   },
   {
     title: 'Dagboksinlägg',
@@ -151,10 +139,12 @@ const CONTENT = [
     date: '2018-11-29',
     content: (
       <Text>
-        Britta: Hej, är det något speciellt jag bör tänka på inför avstämningen
-        i morgon?{'\n'}
-        SSK: Hej Britta, nej det är bara att köra på som vanligt.{'\n'}
-        Britta: Okej, vi hörs i morgon.
+        <Text style={{ fontWeight: 'bold' }}>Britta</Text>: Hej, är det något
+        speciellt jag bör tänka på inför avstämningen i morgon?{'\n'}
+        <Text style={{ fontWeight: 'bold' }}>SSK</Text>: Hej Britta, nej det är
+        bara att köra på som vanligt.{'\n'}
+        <Text style={{ fontWeight: 'bold' }}>Britta</Text>: Okej, vi hörs i
+        morgon.
       </Text>
     ),
   },
