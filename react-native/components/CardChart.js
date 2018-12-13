@@ -37,7 +37,7 @@ export default class CardChart extends React.Component {
 
     let stateData = { ...this.state.data };
     stateData.datasets[0] = { data: newDataset };
-    console.log(stateData);
+
     this.setState({
       data: stateData,
       loading: false,
@@ -49,21 +49,24 @@ export default class CardChart extends React.Component {
     let newDataset = [];
     let newLabels = [];
     let data = res.val();
-
     Object.keys(data).forEach(key => {
       newDataset.push(Number(data[key].data));
       newLabels.push(this.getDate(new Date(data[key].timestamp)));
     });
-    stateData.labels = newLabels.slice(newLabels.length - 7, newLabels.length);
-    stateData.datasets.push({
-      data: newDataset.slice(newDataset.length - 7, newDataset.length),
-    });
     this.setState({
-      data: stateData,
+      allData: newDataset,
+      allLabels: newLabels,
       loading: false,
     });
   };
-
+  getFilteredData = span => {
+    let { labels, stateData } = this.state;
+    let data = {
+      labels: labels.slice(labels.length - span, labels.length),
+      data: stateData.slice(stateData.length - span, stateData.length),
+    };
+    return data;
+  };
   getColor = (type, opacity) => {
     switch (type) {
       case 'Diastolic':
@@ -81,25 +84,18 @@ export default class CardChart extends React.Component {
   render() {
     let { width, height, type } = this.props;
 
-    const alternativeData = {
-      labels: [
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday',
-        'Sunday',
-      ],
-      datasets: [
-        {
-          data: [10, 20, 30, 40, 50, 60, 70],
-        },
-        {
-          data: [140, 130, 120, 110, 100, 100, 90],
-        },
-      ],
-    };
+    let span;
+    switch (this.state.dateSpan) {
+      case 'day':
+        span = 3;
+        break;
+      case 'month':
+        span = newDataset.length < 30 ? newDataset.length : 30;
+        break;
+      default:
+        span = 7;
+        break;
+    }
     const chartConfig = {
       backgroundGradientFrom: '#fff',
       backgroundGradientTo: '#fff',
@@ -110,7 +106,7 @@ export default class CardChart extends React.Component {
       <Text>Loading...</Text>
     ) : (
       <LineChart
-        data={this.state.data}
+        data={this.getFilteredData(span)}
         width={width}
         height={height}
         chartConfig={chartConfig}
