@@ -58,7 +58,7 @@ const MeasurementsStack = createStackNavigator({
 });
 
 MeasurementsStack.navigationOptions = {
-  tabBarLabel: 'Measurements',
+  tabBarLabel: 'Mätvärden',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -75,7 +75,7 @@ const CalendarStack = createStackNavigator({
 });
 
 CalendarStack.navigationOptions = {
-  tabBarLabel: 'Calendar',
+  tabBarLabel: 'Kalender',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -93,7 +93,7 @@ const EducationStack = createStackNavigator({
 });
 
 EducationStack.navigationOptions = {
-  tabBarLabel: 'Education',
+  tabBarLabel: 'Utbildning',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -114,7 +114,7 @@ const FeedStack = createStackNavigator({
 });
 
 FeedStack.navigationOptions = {
-  tabBarLabel: 'Feed',
+  tabBarLabel: 'Tidslinje',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -145,11 +145,14 @@ MoreStack.navigationOptions = {
   ),
 };
 
-const MainTabNavigator = createBottomTabNavigator({
-  CalendarStack,
-  MeasurementsStack,
-  FeedStack,
-  EducationStack,
-  MoreStack,
-});
+const MainTabNavigator = createBottomTabNavigator(
+  {
+    CalendarStack,
+    MeasurementsStack,
+    FeedStack,
+    EducationStack,
+    MoreStack,
+  },
+  { initialRouteName: 'FeedStack' }
+);
 export default MainTabNavigator;
